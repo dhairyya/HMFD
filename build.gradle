@@ -1,4 +1,4 @@
-group 'edu.cmu.andrew.karim'
+group 'edu.cmu.app.xdhairyya'
 
 apply plugin: 'java'
 apply plugin: 'war'
@@ -28,6 +28,7 @@ dependencies {
     compile group: 'javax.activation', name: 'activation', version: '1.1'
     compile group: 'javax.mail', name: 'mail', version: '1.4.7'
     compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-csv', version: '2.9.5'
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
 
 
 }
