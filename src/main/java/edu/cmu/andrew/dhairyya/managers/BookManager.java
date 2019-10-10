@@ -5,6 +5,7 @@ import com.mongodb.client.MongoCollection;
 import edu.cmu.andrew.dhairyya.exceptions.AppException;
 import edu.cmu.andrew.dhairyya.exceptions.AppInternalServerException;
 import edu.cmu.andrew.dhairyya.models.Book;
+import edu.cmu.andrew.dhairyya.models.DisplayBook;
 import edu.cmu.andrew.dhairyya.utils.MongoPool;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -75,19 +76,16 @@ public class BookManager extends Manager {
         }
     }
 
-    public ArrayList<Book> getBookList() throws AppException {
+    public ArrayList<DisplayBook> getBookList() throws AppException {
         try{
-            ArrayList<Book> bookList = new ArrayList<>();
+            ArrayList<DisplayBook> bookList = new ArrayList<>();
             FindIterable<Document> bookDocs = bookCollection.find();
             for(Document bookDoc: bookDocs) {
-                Book book = new Book(
+                DisplayBook book = new DisplayBook(
                         bookDoc.getObjectId("_id").toString(),
                         bookDoc.getString("bookId"),
                         bookDoc.getString("name"),
-                        bookDoc.getString("author"),
-                        bookDoc.getString("checked_out"),
-                        bookDoc.getString("borrowerId"),
-                        bookDoc.getString("borrowerName")
+                        bookDoc.getString("author")
                 );
                 bookList.add(book);
             }
@@ -97,20 +95,17 @@ public class BookManager extends Manager {
         }
     }
 
-    public ArrayList<Book> getBookById(String id) throws AppException {
+    public ArrayList<DisplayBook> getBookById(String id) throws AppException {
         try{
-            ArrayList<Book> bookList = new ArrayList<>();
+            ArrayList<DisplayBook> bookList = new ArrayList<>();
             FindIterable<Document> bookDocs = bookCollection.find();
             for(Document bookDoc: bookDocs) {
                 if(bookDoc.getObjectId("_id").toString().equals(id)) {
-                    Book book = new Book(
+                    DisplayBook book = new DisplayBook(
                             bookDoc.getObjectId("_id").toString(),
                             bookDoc.getString("bookId"),
                             bookDoc.getString("name"),
-                            bookDoc.getString("author"),
-                            bookDoc.getString("checked_out"),
-                            bookDoc.getString("borrowerId"),
-                            bookDoc.getString("borrowerName")
+                            bookDoc.getString("author")
                     );
                     bookList.add(book);
                 }
@@ -121,20 +116,17 @@ public class BookManager extends Manager {
         }
     }
 
-    public ArrayList<Book> getListOfBooksWhichAreNotCheckedOut(String checked_out) throws AppException {
+    public ArrayList<DisplayBook> getListOfBooksWhichAreNotCheckedOut(String checked_out) throws AppException {
         try{
-            ArrayList<Book> bookList = new ArrayList<>();
+            ArrayList<DisplayBook> bookList = new ArrayList<>();
             FindIterable<Document> bookDocs = bookCollection.find();
             for(Document bookDoc: bookDocs) {
                 if(bookDoc.getString("checked_out").equals(checked_out)) {
-                    Book book = new Book(
+                    DisplayBook book = new DisplayBook(
                             bookDoc.getObjectId("_id").toString(),
                             bookDoc.getString("bookId"),
                             bookDoc.getString("name"),
-                            bookDoc.getString("author"),
-                            bookDoc.getString("checked_out"),
-                            bookDoc.getString("borrowerId"),
-                            bookDoc.getString("borrowerName")
+                            bookDoc.getString("author")
                     );
                     bookList.add(book);
                 }
