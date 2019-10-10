@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import edu.cmu.andrew.dhairyya.http.exceptions.HttpBadRequestException;
 import edu.cmu.andrew.dhairyya.managers.BookManager;
 import edu.cmu.andrew.dhairyya.models.Book;
+import edu.cmu.andrew.dhairyya.models.DisplayBook;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
 import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
 import edu.cmu.andrew.dhairyya.http.utils.PATCH;
@@ -56,7 +57,7 @@ public class BookHttpInterface extends HttpInterface {
 
         try{
             AppLogger.info("Got an API call");
-            ArrayList<Book> books;
+            ArrayList<DisplayBook> books;
             if(checked_out==null)
             books = BookManager.getInstance().getBookList();
             else
@@ -80,7 +81,7 @@ public class BookHttpInterface extends HttpInterface {
 
         try{
             AppLogger.info("Got an API call");
-            ArrayList<Book> books = BookManager.getInstance().getBookById(id);
+            ArrayList<DisplayBook> books = BookManager.getInstance().getBookById(id);
 
             if(books != null)
                 return new AppResponse(books);
