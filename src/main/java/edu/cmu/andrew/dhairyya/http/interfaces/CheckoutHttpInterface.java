@@ -7,6 +7,7 @@ import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
 import edu.cmu.andrew.dhairyya.managers.BookManager;
 import edu.cmu.andrew.dhairyya.managers.CheckoutManager;
 import edu.cmu.andrew.dhairyya.models.Book;
+import edu.cmu.andrew.dhairyya.models.DisplayBook;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
 import org.json.JSONObject;
 
@@ -49,7 +50,7 @@ public class CheckoutHttpInterface extends HttpInterface {
         try{
             AppLogger.info("Got an API call");
 
-            ArrayList<Book> books = BookManager.getInstance().getListOfBooksWhichAreNotCheckedOut("Y");
+            ArrayList<DisplayBook> books = BookManager.getInstance().getListOfBooksWhichAreNotCheckedOut("Y");
             if(books != null)
                 return new AppResponse(books);
             else
