@@ -2,7 +2,8 @@
 
 This is the course project for CMU MSSM course 49787-A (Architecture & Programming Principles). 
 
-##Problem Statement
+## Problem Statement
+
 Away from home, food choices and food options are becoming a growing challenge. What is more critical is finding the right options close to one’s community and geographical choices. In such scenarios people migrating and entering into different regions from foreign places tend to lose on the healthy and home-like food options. Undernourished food over time causes greater losses. HMFD will enable healthy, nutritious and timely food delivery to all it’s subscribers, by monitoring choices and delivering food at the doorstep for subscribers, daily.
 
 ## Installation
