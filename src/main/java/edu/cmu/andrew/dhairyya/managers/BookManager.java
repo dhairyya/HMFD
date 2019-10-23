@@ -5,7 +5,6 @@ import com.mongodb.client.MongoCollection;
 import edu.cmu.andrew.dhairyya.exceptions.AppException;
 import edu.cmu.andrew.dhairyya.exceptions.AppInternalServerException;
 import edu.cmu.andrew.dhairyya.models.Book;
-import edu.cmu.andrew.dhairyya.models.DisplayBook;
 import edu.cmu.andrew.dhairyya.utils.MongoPool;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -76,7 +75,7 @@ public class BookManager extends Manager {
         }
     }
 
-    public ArrayList<DisplayBook> getBookList() throws AppException {
+   /* public ArrayList<DisplayBook> getBookList() throws AppException {
         try{
             ArrayList<DisplayBook> bookList = new ArrayList<>();
             FindIterable<Document> bookDocs = bookCollection.find();
@@ -136,5 +135,5 @@ public class BookManager extends Manager {
             throw handleException("Get Book List", e);
         }
     }
-
+*/
 }
