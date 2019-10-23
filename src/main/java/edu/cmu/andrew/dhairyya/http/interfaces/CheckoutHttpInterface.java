@@ -6,10 +6,7 @@ import edu.cmu.andrew.dhairyya.http.exceptions.HttpBadRequestException;
 import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
 import edu.cmu.andrew.dhairyya.managers.BookManager;
 import edu.cmu.andrew.dhairyya.managers.CheckoutManager;
-import edu.cmu.andrew.dhairyya.models.Book;
-import edu.cmu.andrew.dhairyya.models.DisplayBook;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
-import org.json.JSONObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -43,7 +40,7 @@ public class CheckoutHttpInterface extends HttpInterface {
 
     }
 
-    @GET
+   /* @GET
     @Produces({MediaType.APPLICATION_JSON})
     public AppResponse getCheckedOutBooks(@Context HttpHeaders headers){
 
@@ -58,7 +55,7 @@ public class CheckoutHttpInterface extends HttpInterface {
         }catch (Exception e){
             throw handleException("GET /checkouts", e);
         }
-    }
+    }*/
 
     @DELETE
     @Consumes({ MediaType.APPLICATION_JSON})
