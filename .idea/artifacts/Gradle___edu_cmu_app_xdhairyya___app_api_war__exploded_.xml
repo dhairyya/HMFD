@@ -43,6 +43,7 @@
           <element id="library" level="project" name="Gradle: javax.xml.bind:jaxb-api:2.3.0" />
           <element id="library" level="project" name="Gradle: javax.mail:mail:1.4.7" />
           <element id="library" level="project" name="Gradle: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Gradle: com.googlecode.json-simple:json-simple:1.1" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.5" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
           <element id="library" level="project" name="Gradle: org.mongodb:mongodb-driver-core:3.4.2" />
@@ -58,7 +59,6 @@
           <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b30" />
           <element id="library" level="project" name="Gradle: org.javassist:javassist:3.20.0-GA" />
           <element id="library" level="project" name="Gradle: javax.inject:javax.inject:1" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1/5e303a03d04e6788dddfa3655272580ae0fc13bb/json-simple-1.1.jar" />
         </element>
       </element>
     </root>

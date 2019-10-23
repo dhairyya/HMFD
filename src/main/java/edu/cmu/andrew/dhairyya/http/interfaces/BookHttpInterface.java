@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import edu.cmu.andrew.dhairyya.http.exceptions.HttpBadRequestException;
 import edu.cmu.andrew.dhairyya.managers.BookManager;
 import edu.cmu.andrew.dhairyya.models.Book;
-import edu.cmu.andrew.dhairyya.models.DisplayBook;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
 import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
 import edu.cmu.andrew.dhairyya.http.utils.PATCH;
@@ -51,7 +50,7 @@ public class BookHttpInterface extends HttpInterface {
         }
 
     }
-    @GET
+   /* @GET
     @Produces({MediaType.APPLICATION_JSON})
     public AppResponse getBooks(@QueryParam("available") String checked_out){
 
@@ -73,8 +72,8 @@ public class BookHttpInterface extends HttpInterface {
             throw handleException("GET /books", e);
         }
     }
-
-    @GET
+*/
+    /*@GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
     public AppResponse getSingleBook(@Context HttpHeaders headers, @PathParam("id") String id){
@@ -91,7 +90,7 @@ public class BookHttpInterface extends HttpInterface {
             throw handleException("GET /books/{id}", e);
         }
 
-    }
+    }*/
 
     @DELETE
     @Path("/{id}")
