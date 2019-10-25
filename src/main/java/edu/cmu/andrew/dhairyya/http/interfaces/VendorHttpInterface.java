@@ -66,7 +66,7 @@ public class VendorHttpInterface extends HttpInterface {
     @Path("/{vendorId}")
     @Consumes({ MediaType.APPLICATION_JSON})
     @Produces({ MediaType.APPLICATION_JSON})
-    public AppResponse patchUsers(Object request, @PathParam("vendorId") String vendorId){
+    public AppResponse patchVendors(Object request, @PathParam("vendorId") String vendorId){
 
         JSONObject json = null;
 
@@ -107,7 +107,7 @@ public class VendorHttpInterface extends HttpInterface {
     @Path("/{vendorId}")
     @Consumes({ MediaType.APPLICATION_JSON})
     @Produces({ MediaType.APPLICATION_JSON })
-    public AppResponse deleteBook(@PathParam("vendorId") String vendorId){
+    public AppResponse deleteVendor(@PathParam("vendorId") String vendorId){
         try{
             VendorManager.getInstance().deleteVendor(vendorId);
             return new AppResponse("Vendor Delete Successful");
@@ -119,7 +119,7 @@ public class VendorHttpInterface extends HttpInterface {
     @GET
     @Path("/{vendorId}")
     @Produces({MediaType.APPLICATION_JSON})
-    public AppResponse getSingleBook(@Context HttpHeaders headers, @PathParam("vendorId") String vendorId){
+    public AppResponse getSingleVendor(@Context HttpHeaders headers, @PathParam("vendorId") String vendorId){
 
         try{
             AppLogger.info("Got an API call");
