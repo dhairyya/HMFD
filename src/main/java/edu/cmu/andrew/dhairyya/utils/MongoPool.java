@@ -46,5 +46,9 @@ public class MongoPool {
         return collection;
     }
 
+    public void createCollection(String collectionName){
+        db.createCollection(collectionName);
+    }
+
 
 }
