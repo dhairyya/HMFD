@@ -4,7 +4,7 @@ This is the course project for CMU MSSM course 49787-A (Architecture & Programmi
 
 ## Project 8 Part
 
-Ritu Rao worked on the vendor part
+Ritu Rao worked on the vendor part<br />
 Dhairyya Agarwal worked on the client part
 
 Link to Google Document: https://docs.google.com/document/d/1wWcBwg74swgPhy2c-aVOQfvUjP_Hja6lyOITvGUwwz8/edit?usp=sharing
