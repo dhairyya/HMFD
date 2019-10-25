@@ -112,6 +112,25 @@ public class ClientHttpInterface extends HttpInterface {
         }
     }
 
+    @GET
+    @Path("reset")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse resetClientData(@Context HttpHeaders headers) {
+        try{
+            AppLogger.info("Got an API call");
+            String message = ClientManager.getInstance().resetClientData();
+
+            if(message!=null)
+                return new AppResponse(message);
+            else
+                throw new HttpBadRequestException(0, "Problem with resetting client data");
+        }
+        catch (Exception e){
+            throw handleException("GET /clients/reset", e);
+        }
+
+    }
+
     //Sorting: http://localhost:8080/api/clients?sortby=clientId
     //Pagination: http://localhost:8080/api/clients?offset=1&count=2
     //Pagination: http://localhost:8080/api/vendors?fullname=dhairyyaagarwal
