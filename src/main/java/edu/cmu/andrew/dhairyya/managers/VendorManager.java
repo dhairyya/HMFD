@@ -13,9 +13,7 @@ import com.mongodb.BasicDBObject;
 
 import java.util.ArrayList;
 
-import static com.mongodb.client.model.Filters.eq;
-
-public class VendorManager  extends Manager{
+public class VendorManager extends Manager{
 
     public static VendorManager _self;
     private MongoCollection<Document> vendorCollection;
