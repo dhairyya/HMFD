@@ -284,5 +284,44 @@ public class VendorManager extends Manager{
         }
     }
 
+    public String resetVendorData() throws AppException{
+        try {
+            vendorCollection.drop();
+            MongoPool.getInstance().createCollection("vendors");
+            collectionInsert("V01", "Vendor 1", "vendor1@gmail.co", "450-567-83421", "Vendor 1 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10-02-2020");
+            collectionInsert("V02", "Vendor 2", "vendor2@gmail.co", "450-567-83422", "Vendor 2 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10-02-2020");
+            collectionInsert("V03", "Vendor 3", "vendor3@gmail.co", "450-567-83423", "Vendor 3 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10-02-2020");
+            collectionInsert("V04", "Vendor 4", "vendor4@gmail.co", "450-567-83424", "Vendor 4 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10-02-2020");
+            collectionInsert("V05", "Vendor 5", "vendor5@gmail.co", "450-567-83425", "Vendor 5 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10-02-2020");
+            return "Successful reset of Vendor Collection Data";
+        }
+        catch(Exception e){
+            throw handleException("Resetting Vendor Collection Data", e);
+        }
 
+    }
+
+
+    private void collectionInsert( String vendorId, String fullName, String email, String phoneNumber,String nameOfBusiness,String cuisineId,String addressStreetNumber,String addressCity,String addressState,String addressZip,String addressCountry,String specificFoodExpertiseList,String description,String password,String socialSecurityNumber,String cookingLicenseNumber,String cookingLicenseState,String cookingLicenseExpiry) {
+        Document document = new Document()
+                .append("vendorId", vendorId)
+                .append("fullName", fullName)
+                .append("email", email)
+                .append("phoneNumber", phoneNumber)
+                .append("nameOfBusiness", nameOfBusiness)
+                .append("cuisineId", cuisineId)
+                .append("addressStreetNumber", addressStreetNumber)
+                .append("addressCity", addressCity)
+                .append("addressState", addressState)
+                .append("addressZip", addressZip)
+                .append("addressCountry", addressCountry)
+                .append("specificFoodExpertiseList", specificFoodExpertiseList)
+                .append("description", description)
+                .append("password", password)
+                .append("socialSecurityNumber",socialSecurityNumber)
+                .append("cookingLicenseNumber", cookingLicenseNumber)
+                .append("cookingLicenseState", cookingLicenseState)
+                .append("cookingLicenseExpiry", cookingLicenseExpiry);
+        vendorCollection.insertOne(document);
+    }
 }
