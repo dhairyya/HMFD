@@ -62,27 +62,6 @@ public class ReviewManager  extends Manager{
         }
     }
 
-    public ArrayList<Review> getReviewByVendorId(String vendorId) throws AppException {
-        try{
-            ArrayList<Review> reviewList = new ArrayList<>();
-            FindIterable<Document> reviewDocs = reviewCollection.find();
-            for(Document reviewDoc: reviewDocs) {
-                if(reviewDoc.getString("vendorId").equals(vendorId)) {
-                    Review review = new Review(
-                            reviewDoc.getObjectId("_id").toString(),
-                            reviewDoc.getString("clientId"),
-                            reviewDoc.getString("vendorId"),
-                            reviewDoc.getString("reviewText")
-                    );
-                    reviewList.add(review);
-                }
-            }
-            return new ArrayList<>(reviewList);
-        } catch(Exception e){
-            throw handleException("Get Reviews By Vendor Id", e);
-        }
-    }
-
     public ArrayList<Review> getReviewById(String reviewId) throws AppException {
         try{
             ArrayList<Review> reviewList = new ArrayList<>();
