@@ -134,7 +134,24 @@ public class VendorHttpInterface extends HttpInterface {
         }
     }
 
-    //Sorting: http://localhost:8080/api/vendors?sortby=businessname
+    @GET
+    @Path("reset")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse resetVendorData(@Context HttpHeaders headers) {
+        try {
+            AppLogger.info("Got an API call");
+            String message = VendorManager.getInstance().resetVendorData();
+
+            if (message != null)
+                return new AppResponse(message);
+            else
+                throw new HttpBadRequestException(0, "Problem with resetting vendor data");
+        } catch (Exception e) {
+            throw handleException("GET /vendors/reset", e);
+        }
+    }
+
+        //Sorting: http://localhost:8080/api/vendors?sortby=businessname
     //Pagination: http://localhost:8080/api/vendors?offset=1&count=2
     //Pagination: http://localhost:8080/api/vendors?businessname=taniafoods
     @GET
