@@ -3,14 +3,14 @@ package edu.cmu.andrew.dhairyya.models;
 public class Rating {
 
     private String id ;
-    private String vendorId;
     private String clientId;
+    private String vendorId;
     private double rating;
 
     public Rating(String id, String vendorId, String clientId, double rating) {
         this.id = id;
-        this.vendorId = vendorId;
         this.clientId = clientId;
+        this.vendorId = vendorId;
         this.rating = rating;
     }
 

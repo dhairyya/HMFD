@@ -3,14 +3,14 @@ package edu.cmu.andrew.dhairyya.models;
 public class Review {
 
     private String id ;
-    private String vendorId;
     private String clientId;
+    private String vendorId;
     private String reviewText;
 
-    public Review(String id, String vendorId, String clientId, String reviewText) {
+    public Review(String id, String clientId, String vendorId, String reviewText) {
         this.id = id;
-        this.vendorId = vendorId;
         this.clientId = clientId;
+        this.vendorId = vendorId;
         this.reviewText = reviewText;
     }
 
