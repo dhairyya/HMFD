@@ -7,7 +7,7 @@ public class Rating {
     private String vendorId;
     private double rating;
 
-    public Rating(String id, String vendorId, String clientId, double rating) {
+    public Rating(String id, String clientId, String vendorId, double rating) {
         this.id = id;
         this.clientId = clientId;
         this.vendorId = vendorId;
