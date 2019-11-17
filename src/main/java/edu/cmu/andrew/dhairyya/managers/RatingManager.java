@@ -51,7 +51,7 @@ public class RatingManager extends Manager{
                             ratingDoc.getObjectId("_id").toString(),
                             ratingDoc.getString("clientId"),
                             ratingDoc.getString("vendorId"),
-                            Double.parseDouble(ratingDoc.getString("rating"))
+                           ratingDoc.getDouble("rating")
                     );
                     ratingList.add(rating);
                 }
@@ -71,7 +71,7 @@ public class RatingManager extends Manager{
                             ratingDoc.getObjectId("_id").toString(),
                             ratingDoc.getString("clientId"),
                             ratingDoc.getString("vendorId"),
-                            Double.parseDouble(ratingDoc.getString("rating"))
+                            ratingDoc.getDouble("rating")
                     );
                     ratingList.add(rating);
             }
