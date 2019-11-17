@@ -292,25 +292,6 @@ public class ClientHttpInterface extends HttpInterface {
     }
 
 
-    @GET
-    @Path("/{reviewId}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public AppResponse getReviewById(@Context HttpHeaders headers, @PathParam("reviewId") String reviewId){
-
-        try{
-            AppLogger.info("Got an API call");
-            ArrayList<Review> reviews = ReviewManager.getInstance().getReviewById(reviewId);
-
-            if( reviews!= null)
-                return new AppResponse(reviews);
-            else
-                throw new HttpBadRequestException(0, "Problem with getting review by Id");
-        }catch (Exception e){
-            throw handleException("GET /clients/{reviewId}", e);
-        }
-    }
-
-
     @POST
     @Path("/{clientId}/ratings")
     @Consumes({MediaType.APPLICATION_JSON})
@@ -368,25 +349,6 @@ public class ClientHttpInterface extends HttpInterface {
                 throw new HttpBadRequestException(0, "Problem with getting all ratings");
         }catch (Exception e){
             throw handleException("GET /clients/ratings", e);
-        }
-    }
-
-
-    @GET
-    @Path("/{ratingId}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public AppResponse getRatingById(@Context HttpHeaders headers, @PathParam("ratingId") String ratingId){
-
-        try{
-            AppLogger.info("Got an API call");
-            ArrayList<Rating> ratings = RatingManager.getInstance().getRatingById(ratingId);
-
-            if( ratings!= null)
-                return new AppResponse(ratings);
-            else
-                throw new HttpBadRequestException(0, "Problem with getting rating by Id");
-        }catch (Exception e){
-            throw handleException("GET /clients/{ratingId}", e);
         }
     }
 
