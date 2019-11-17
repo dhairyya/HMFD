@@ -66,7 +66,7 @@ public class PaymentMethodManager extends Manager {
             }
             return new ArrayList<>(paymentMethodList);
         } catch(Exception e){
-            throw handleException("Get Payment Method By Id", e);
+            throw handleException("Get Payment Methods By Client Id", e);
         }
     }
 
