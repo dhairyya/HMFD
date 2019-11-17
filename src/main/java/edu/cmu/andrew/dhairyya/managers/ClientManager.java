@@ -205,4 +205,32 @@ public class ClientManager  extends Manager{
             throw handleException("Get Client List filtered by client full name", e);
         }
     }
+
+    public String resetClientData() throws AppException{
+        try {
+            clientCollection.drop();
+            MongoPool.getInstance().createCollection("clients");
+            collectionInsert("C01", "Mario", "mario@gmail.come", "450-567-40000", "247 Clyton Drive", "american", "breakIntoIt");
+            collectionInsert("C02", "James", "james@gmail.come", "450-567-40001", "247 Clyton Drive", "indian", "breakIntoIt");
+            collectionInsert("C03", "Phil", "phil@gmail.come", "450-567-40001", "247 Philly Drive", "thai", "breakIntoIt");
+            collectionInsert("C04", "Jatin", "jatin@gmail.come", "450-567-40001", "247 Live Drive", "punjabi", "breakIntoIt");
+            return "Successful reset of Client Collection Data";
+        }
+        catch(Exception e){
+            throw handleException("Resetting Client Collection data", e);
+        }
+
+    }
+
+    private void collectionInsert( String clientId, String fullName, String email, String phoneNumber,String address,String typeOfCuisinePreferred,String password) {
+        Document document = new Document()
+                .append("clientId", clientId)
+                .append("fullName", fullName)
+                .append("email", email)
+                .append("phoneNumber", phoneNumber)
+                .append("address", address)
+                .append("typeOfCuisinePreferred", typeOfCuisinePreferred)
+                .append("password", password);
+        clientCollection.insertOne(document);
+    }
 }

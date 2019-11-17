@@ -2,6 +2,13 @@
 
 This is the course project for CMU MSSM course 49787-A (Architecture & Programming Principles). 
 
+## Project 8 Part
+
+Ritu Rao worked on the vendor part<br />
+Dhairyya Agarwal worked on the client part
+
+Link to Google Document: https://docs.google.com/document/d/1wWcBwg74swgPhy2c-aVOQfvUjP_Hja6lyOITvGUwwz8/edit?usp=sharing
+
 ## Problem Statement
 
 Away from home, food choices and food options are becoming a growing challenge. What is more critical is finding the right options close to one’s community and geographical choices. In such scenarios people migrating and entering into different regions from foreign places tend to lose on the healthy and home-like food options. Undernourished food over time causes greater losses. HMFD will enable healthy, nutritious and timely food delivery to all it’s subscribers, by monitoring choices and delivering food at the doorstep for subscribers, daily.
@@ -12,39 +19,6 @@ Use github to clone the project using the following command
 
 ```bash
 git clone https://github.com/dhairyya/HMFD <directory_name>
-```
-
-## Usage example
-
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
-
-_For more examples and usage, please refer to the [Wiki][wiki]._
-
-## Development setup
-
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
-```sh
-
-```
-
-## Branch Naming Convention
-
-Use the following format for branch naming 
-```bash
-featureName-DeveloperName
-```
-
-And to create local branch in git  and to switch to it use the following commands
-```bash
-git checkout -b <branch_name>
-```
-
-## Commit Naming Convention
-
-Use the following format for commit naming 
-```bash
-commitMessage-DeveloperName
 ```
 
 ## Release History
