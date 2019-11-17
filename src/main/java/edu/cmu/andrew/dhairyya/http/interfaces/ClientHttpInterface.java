@@ -6,7 +6,9 @@ import edu.cmu.andrew.dhairyya.http.exceptions.HttpBadRequestException;
 import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
 import edu.cmu.andrew.dhairyya.http.utils.PATCH;
 import edu.cmu.andrew.dhairyya.managers.ClientManager;
+import edu.cmu.andrew.dhairyya.managers.PaymentMethodManager;
 import edu.cmu.andrew.dhairyya.models.Client;
+import edu.cmu.andrew.dhairyya.models.PaymentMethod;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
 import org.json.JSONObject;
 
@@ -49,7 +51,6 @@ public class ClientHttpInterface extends HttpInterface {
             throw handleException("POST vendors", e);
         }
     }
-
 
     @PATCH
     @Path("/{clientId}")
@@ -112,6 +113,8 @@ public class ClientHttpInterface extends HttpInterface {
         }
     }
 
+
+
     //Sorting: http://localhost:8080/api/clients?sortby=clientId
     //Pagination: http://localhost:8080/api/clients?offset=1&count=2
     //Pagination: http://localhost:8080/api/vendors?fullname=dhairyyaagarwal
@@ -141,5 +144,69 @@ public class ClientHttpInterface extends HttpInterface {
         }
     }
 
+    @POST
+    @Path("/{clientId}/paymentMethods")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse insertPaymentMethodForClient(Object request,@PathParam("clientId") String clientId){
+
+        try{
+            JSONObject json = new JSONObject(ow.writeValueAsString(request));
+
+            PaymentMethod pm = new PaymentMethod(
+                    null,
+                    clientId,
+                    json.getString("cardType"),
+                    json.getString("cardNumber"),
+                    json.getString("cardProviderType"),
+                    json.getString("expiration"),
+                    json.getString("cvv")
+            );
+
+
+            PaymentMethodManager.getInstance().createPaymentMethod(pm);
+            return new AppResponse("Insert Successful");
+
+        }catch (Exception e){
+            throw handleException("POST clients/{clientId}/paymentMethods", e);
+        }
+    }
+
+    @GET
+    @Path("/{clientId}/paymentMethods")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse getPaymentMethodsForClientId(@Context HttpHeaders headers, @PathParam("clientId") String clientId){
+
+        try{
+            AppLogger.info("Got an API call");
+            ArrayList<PaymentMethod> paymentMethods = PaymentMethodManager.getInstance().getPaymentMethodByClientId(clientId);
+
+            if(paymentMethods != null)
+                return new AppResponse(paymentMethods);
+            else
+                throw new HttpBadRequestException(0, "Problem with getting payment methods for client");
+        }catch (Exception e){
+            throw handleException("GET /clients/{clientId}/paymentMethods", e);
+        }
+    }
+
+
+    @GET
+    @Path("/paymentMethods/{paymentMethodId}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse getPaymentMethodById(@Context HttpHeaders headers, @PathParam("paymentMethodId") String paymentMethodId){
+
+        try{
+            AppLogger.info("Got an API call");
+            ArrayList<PaymentMethod> paymentMethods = PaymentMethodManager.getInstance().getPaymentMethodById(paymentMethodId);
+
+            if(paymentMethods != null)
+                return new AppResponse(paymentMethods);
+            else
+                throw new HttpBadRequestException(0, "Problem with getting payment method by Id");
+        }catch (Exception e){
+            throw handleException("GET /clients/paymentMethods/{paymentMethodId}", e);
+        }
+    }
 
 }
