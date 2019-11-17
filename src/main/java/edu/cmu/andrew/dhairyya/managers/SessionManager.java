@@ -50,24 +50,27 @@ public class SessionManager {
             query.put("email", json.getString("email"));
             //query.put("password", APPCrypt.encrypt(json.getString("password")));
             query.put("password", json.getString("password"));
+            Session sessionVal = null;
 
             Document clientItem = clientCollection.find(query).first();
-            if (clientItem == null)
-                throw new AppNotFoundException(0, "No client found matching credentials");
-            Client client = convertDocumentToClient(clientItem);
-            client.setId(clientItem.getObjectId("_id").toString());
-            Session sessionVal = new Session(client);
-            SessionMap.put(sessionVal.token,sessionVal);
-
-            if(sessionVal != null) {
-                Document vendorItem = vendorCollection.find(query).first();
-                if (vendorItem == null)
-                    throw new AppNotFoundException(0, "No vendor found matching credentials");
-                Vendor vendor = convertDocumentToVendor(vendorItem);
-                client.setId(vendorItem.getObjectId("_id").toString());
+            if (clientItem != null) {
+                Client client = convertDocumentToClient(clientItem);
+                client.setId(clientItem.getObjectId("_id").toString());
                 sessionVal = new Session(client);
-                SessionMap.put(sessionVal.token, sessionVal);
             }
+
+            if(sessionVal == null) {
+                Document vendorItem = vendorCollection.find(query).first();
+                if (vendorItem != null) {
+                    Vendor vendor = convertDocumentToVendor(vendorItem);
+                    vendor.setId(vendorItem.getObjectId("_id").toString());
+                    sessionVal = new Session(vendor);
+                }
+                else
+                    throw new AppNotFoundException(0, "No vendor or client found matching credentials");
+            }
+
+            SessionMap.put(sessionVal.token, sessionVal);
             return sessionVal;
         }
         catch (JsonProcessingException e) {
@@ -87,7 +90,7 @@ public class SessionManager {
 
 
     private Client convertDocumentToClient(Document item) {
-        Client client = new Client(
+        return new Client(
                 item.getObjectId("_id").toString(),
                 item.getString("clientId"),
                 item.getString("fullName"),
@@ -97,11 +100,10 @@ public class SessionManager {
                 item.getString("typeOfCuisinePreferred"),
                 item.getString("password")
         );
-        return client;
     }
 
     private Vendor convertDocumentToVendor(Document item) {
-         Vendor vendor = new Vendor(
+        return new Vendor(
                  item.getObjectId("_id").toString(),
                 item.getString("vendorId"),
                 item.getString("fullName"),
@@ -122,7 +124,7 @@ public class SessionManager {
                 item.getString("cookingLicenseState"),
                 item.getString("cookingLicenseExpiry")
         );
-        return vendor;
+
     }
     public Session getSessionForToken(HttpHeaders headers) throws Exception{
         List<String> authHeaders = headers.getRequestHeader(HttpHeaders.AUTHORIZATION);
@@ -130,8 +132,8 @@ public class SessionManager {
             throw new AppUnauthorizedException(70,"No Authorization Headers");
         String token = authHeaders.get(0);
 
-        if(SessionManager.getInstance().SessionMap.containsKey(token))
-            return SessionManager.getInstance().SessionMap.get(token);
+        if(SessionMap.containsKey(token))
+            return SessionMap.get(token);
         else
             throw new AppUnauthorizedException(70,"Invalid Token");
 
