@@ -39,7 +39,7 @@ public class MainHttpInterface extends ResourceConfig {
     @Produces({ MediaType.APPLICATION_JSON})
     public Object VersionGet() {
         TreeMap<String,String> version = new TreeMap<>();
-        version.put("Release Version", "1.0");
+        version.put("Release Version", "1.1");
         return new AppResponse(version);
     }
 
