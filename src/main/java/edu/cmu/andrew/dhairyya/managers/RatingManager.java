@@ -62,27 +62,6 @@ public class RatingManager extends Manager{
         }
     }
 
-    public ArrayList<Rating> getRatingByVendorId(String vendorId) throws AppException {
-        try{
-            ArrayList<Rating> ratingList = new ArrayList<>();
-            FindIterable<Document> ratingDocs = ratingCollection.find();
-            for(Document ratingDoc: ratingDocs) {
-                if(ratingDoc.getString("vendorId").equals(vendorId)) {
-                    Rating rating = new Rating(
-                            ratingDoc.getObjectId("_id").toString(),
-                            ratingDoc.getString("clientId"),
-                            ratingDoc.getString("vendorId"),
-                            Double.parseDouble(ratingDoc.getString("rating"))
-                    );
-                    ratingList.add(rating);
-                }
-            }
-            return new ArrayList<>(ratingList);
-        } catch(Exception e){
-            throw handleException("Get Ratings By Vendor Id", e);
-        }
-    }
-
     public ArrayList<Rating> getRatingById(String ratingId) throws AppException {
         try{
             ArrayList<Rating> ratingList = new ArrayList<>();
