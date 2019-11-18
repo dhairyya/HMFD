@@ -2,12 +2,12 @@
 
 This is the course project for CMU MSSM course 49787-A (Architecture & Programming Principles). 
 
-## Project 8 Part
+## Project 9 Part
 
 Ritu Rao worked on the vendor part<br />
 Dhairyya Agarwal worked on the client part
 
-Link to Google Document: https://docs.google.com/document/d/1wWcBwg74swgPhy2c-aVOQfvUjP_Hja6lyOITvGUwwz8/edit?usp=sharing
+Link to Google Document: https://docs.google.com/document/d/10QI2CQRWLlw7oHNZJPUPwQAtU4jkZQ5pt96uhrQRjoM/edit?usp=sharing
 
 ## Problem Statement
 
