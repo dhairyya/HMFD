@@ -167,9 +167,9 @@ public class VendorManager extends Manager{
     }
 
 
-    public void deleteVendor(String vendorId) throws AppException {
+    public void deleteVendor(String id) throws AppException {
         try {
-            Bson filter = new Document("_id", new ObjectId(vendorId));
+            Bson filter = new Document("_id", new ObjectId(id));
             vendorCollection.deleteOne(filter);
         }catch (Exception e){
             throw handleException("Delete Vendor", e);
