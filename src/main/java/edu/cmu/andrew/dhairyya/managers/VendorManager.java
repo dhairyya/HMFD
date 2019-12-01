@@ -99,7 +99,7 @@ public class VendorManager extends Manager{
         try{
             ArrayList<Vendor> vendorList = new ArrayList<>();
             FindIterable<Document> vendorDocs = vendorCollection.find();
-            for(Document vendorDoc: vendorDocs) {
+            for(Document vendorDoc: vendorDocs){
 
                 Vendor vendor = new Vendor(
                         vendorDoc.getObjectId("_id").toString(),
