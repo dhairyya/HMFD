@@ -104,5 +104,7 @@ public class FindServiceManager extends Manager{
             throw handleException("Get Vendor List with their food listing", e);
         }
     }
-
+    /*
+    Incomplete
+     */
 }
