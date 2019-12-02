@@ -1,5 +1,7 @@
 package edu.cmu.andrew.dhairyya.models;
 
+import java.util.Date;
+
 public class Subscriptions {
 
     private String id ;
@@ -8,14 +10,16 @@ public class Subscriptions {
     private String vendorId;
     private double price;
     private int numberOfDays;
+    private Date bookingdate;
 
-    public Subscriptions(String id, String subscriptionId, String clientId, String vendorId, double price, int numberOfDays) {
+    public Subscriptions(String id, String subscriptionId, String clientId, String vendorId, double price, int numberOfDays, Date bookingdate) {
         this.id = id;
         this.subscriptionId = subscriptionId;
         this.clientId = clientId;
         this.vendorId = vendorId;
         this.price = price;
         this.numberOfDays = numberOfDays;
+        this.bookingdate = bookingdate;
     }
 
     public String getId() {
@@ -64,5 +68,13 @@ public class Subscriptions {
 
     public void setNumberOfDays(int numberOfDays) {
         this.numberOfDays = numberOfDays;
+    }
+
+    public Date getBookingdate() {
+        return bookingdate;
+    }
+
+    public void setBookingdate(Date bookingdate) {
+        this.bookingdate = bookingdate;
     }
 }
