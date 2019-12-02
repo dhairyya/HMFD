@@ -153,7 +153,7 @@ public class VendorHttpInterface extends HttpInterface {
 
         //Sorting: http://localhost:8080/api/vendors?sortby=businessname
     //Pagination: http://localhost:8080/api/vendors?offset=1&count=2
-    //Pagination: http://localhost:8080/api/vendors?businessname=taniafoods
+    //Filtering: http://localhost:8080/api/vendors?businessname=taniafoods
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public AppResponse getVendors(@Context HttpHeaders headers, @QueryParam("sortby") String sortby, @QueryParam("offset") Integer offset,
