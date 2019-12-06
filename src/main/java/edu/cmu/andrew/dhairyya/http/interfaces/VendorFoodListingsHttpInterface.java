@@ -43,7 +43,7 @@ public class VendorFoodListingsHttpInterface extends HttpInterface {
                     json.getString("foodListingId"),
                     json.getString("foodItemName"),
                     json.getInt("quantityOfItem"),
-                    json.getDouble("pricePerMeal"),
+                    json.getDouble("price"),
                     json.getDouble("caloriesPerMeal"),
                     json.getString("keyIngredients"),
                     json.getString("dayOfTheWeek")
@@ -91,21 +91,4 @@ public class VendorFoodListingsHttpInterface extends HttpInterface {
         }
     }
 
-    @GET
-    @Path("/{foodItemId}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public AppResponse getFoodListingsByFoodItemId(@Context HttpHeaders headers,@PathParam("foodItemId") String foodItemId){
-
-        try{
-            AppLogger.info("Got an API call");
-            ArrayList<FoodListings> foodListings = VendorFoodListingsManager.getInstance().getFoodListingByFoodId(foodItemId);
-
-            if(foodListings != null)
-                return new AppResponse(foodListings);
-            else
-                throw new HttpBadRequestException(0, "Problem with getting food listings by Food ID");
-        }catch (Exception e){
-            throw handleException("GET /FoodItems/{foodId}", e);
-        }
-    }
 }
