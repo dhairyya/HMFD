@@ -117,7 +117,7 @@ public class SubscriptionHttpInterface extends HttpInterface  {
                 subscriptions = SubscriptionManager.getInstance().getSubscriptionListPaginated(offset, count);
             else if(clientId !=null)
                 subscriptions = SubscriptionManager.getInstance().getSubscriptionsByClientId(clientId);
-            else if(filterName.equals("recent"))
+            else if(filterName!=null && filterName.equals("recent"))
                 subscriptions = SubscriptionManager.getInstance().getSubscritionFilteredbyRecency();
             else
                 subscriptions = SubscriptionManager.getInstance().getSubscriptionsList();

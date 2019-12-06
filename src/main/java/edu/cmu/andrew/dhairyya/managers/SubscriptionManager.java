@@ -60,9 +60,9 @@ public class SubscriptionManager extends Manager {
                         subscriptionDoc.getString("subscriptionId"),
                         subscriptionDoc.getString("clientId"),
                         subscriptionDoc.getString("vendorId"),
-                        Double.parseDouble(subscriptionDoc.getString("price")),
-                        Integer.parseInt(subscriptionDoc.getString("numberOfDays")),
-                        new SimpleDateFormat("dd/MM/yyyy").parse(subscriptionDoc.getString("bookingDate"))
+                       subscriptionDoc.getDouble("price"),
+                        subscriptionDoc.getInteger("numberOfDays"),
+                        subscriptionDoc.getDate("bookingDate")
                 );
                 subscriptionsList.add(subscriptions);
             }
