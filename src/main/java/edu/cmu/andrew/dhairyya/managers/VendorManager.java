@@ -4,6 +4,8 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import edu.cmu.andrew.dhairyya.exceptions.AppException;
 import edu.cmu.andrew.dhairyya.exceptions.AppInternalServerException;
+import edu.cmu.andrew.dhairyya.exceptions.AppUnauthorizedException;
+import edu.cmu.andrew.dhairyya.models.Session;
 import edu.cmu.andrew.dhairyya.models.Vendor;
 import edu.cmu.andrew.dhairyya.utils.MongoPool;
 import org.bson.Document;
@@ -11,6 +13,7 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import com.mongodb.BasicDBObject;
 
+import javax.ws.rs.core.HttpHeaders;
 import java.util.ArrayList;
 
 public class VendorManager extends Manager{
@@ -59,9 +62,12 @@ public class VendorManager extends Manager{
     }
 
 
-    public void updateVendor( Vendor vendor) throws AppException {
+    public void updateVendor(HttpHeaders headers, Vendor vendor) throws AppException {
         try {
-
+            //checkAuthentication(headers, user.getId());
+            Session session = SessionManager.getInstance().getSessionForToken(headers);
+            if(!session.getId().equals(vendor.getId()))
+                throw new AppUnauthorizedException(70,"Invalid vendor id");
 
             Bson filter = new Document("_id", new ObjectId(vendor.getId()));
             Bson newValue = new Document()
@@ -90,7 +96,10 @@ public class VendorManager extends Manager{
             else
                 throw new AppInternalServerException(0, "Failed to update vendor details");
 
-        } catch(Exception e) {
+        } catch(AppUnauthorizedException e) {
+            throw new AppUnauthorizedException(34, e.getMessage());
+        }
+        catch(Exception e) {
             throw handleException("Update Vendor", e);
         }
     }
