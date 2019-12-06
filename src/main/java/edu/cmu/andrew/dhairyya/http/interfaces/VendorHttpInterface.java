@@ -66,7 +66,7 @@ public class VendorHttpInterface extends HttpInterface {
     @Path("/{vendorId}")
     @Consumes({ MediaType.APPLICATION_JSON})
     @Produces({ MediaType.APPLICATION_JSON})
-    public AppResponse patchVendors(Object request, @PathParam("vendorId") String vendorId){
+    public AppResponse patchVendors(@Context HttpHeaders headers,Object request, @PathParam("vendorId") String vendorId){
 
         JSONObject json = null;
 
@@ -94,7 +94,7 @@ public class VendorHttpInterface extends HttpInterface {
                     json.getString("cookingLicenseExpiry")
             );
 
-            VendorManager.getInstance().updateVendor(vendor);
+            VendorManager.getInstance().updateVendor(headers,vendor);
 
         }catch (Exception e){
             throw handleException("PATCH vendors/{vendorId}", e);
