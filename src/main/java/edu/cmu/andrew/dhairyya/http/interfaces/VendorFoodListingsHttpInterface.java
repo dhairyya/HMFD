@@ -43,7 +43,7 @@ public class VendorFoodListingsHttpInterface extends HttpInterface {
                     json.getString("foodListingId"),
                     json.getString("foodItemName"),
                     json.getInt("quantityOfItem"),
-                    json.getDouble("pricePerMeal"),
+                    json.getDouble("price"),
                     json.getDouble("caloriesPerMeal"),
                     json.getString("keyIngredients"),
                     json.getString("dayOfTheWeek")
