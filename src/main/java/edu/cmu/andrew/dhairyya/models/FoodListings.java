@@ -6,7 +6,7 @@ public class FoodListings {
     private String foodListingId;
     private String foodItemName;
     private int quantityOfItem;
-    private double pricePerMeal;
+    private double price;
     private double caloriesPerMeal;
     private String keyIngredients;
     private String dayOfTheWeek;
@@ -17,11 +17,10 @@ public class FoodListings {
         this.foodListingId = foodListingId;
         this.foodItemName = foodItemName;
         this.quantityOfItem = quantityOfItem;
-        this.pricePerMeal = pricePerMeal;
+        this.price = pricePerMeal;
         this.caloriesPerMeal = caloriesPerMeal;
         this.keyIngredients = keyIngredients;
         this.dayOfTheWeek = dayOfTheWeek;
-
     }
 
     public String getId() {
@@ -64,12 +63,12 @@ public class FoodListings {
         this.quantityOfItem = quantityOfItem;
     }
 
-    public double getPricePerMeal() {
-        return pricePerMeal;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPricePerMeal(double pricePerMeal) {
-        this.pricePerMeal = pricePerMeal;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public double getCaloriesPerMeal() {
