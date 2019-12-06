@@ -28,21 +28,15 @@ public class ComputePriceManager extends Manager {
     public double calculatePrice(String vendorId,int noOfDays) throws AppException {
         double price = 0.0;
         try {
-            String dayOfWeek = new SimpleDateFormat("EE").format(new Date());
-            Map<String, Double> priceList = new HashMap<>();
             FindIterable<Document> vendorDocs = vendorFoodListingsCollection.find();
             for (Document vendorDoc : vendorDocs) {
                 if (vendorDoc.getString("vendorId").equals(vendorId))
-                    priceList.put(vendorDoc.getString("dayOfTheWeek"), Double.parseDouble(vendorDoc.getString("pricePerMeal")));
+                    price = Double.parseDouble(vendorDoc.getString("pricePerMeal"));
             }
-            price += priceList.get(dayOfWeek);
-            noOfDays--;
+            price *= noOfDays;
             return price;
         } catch (Exception e) {
             throw handleException("Get price for a given vendor and no of days", e);
         }
     }
-    /*
-    Incomplete
-     */
 }
