@@ -5,12 +5,15 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import edu.cmu.andrew.dhairyya.exceptions.AppException;
 import edu.cmu.andrew.dhairyya.exceptions.AppInternalServerException;
+import edu.cmu.andrew.dhairyya.exceptions.AppUnauthorizedException;
 import edu.cmu.andrew.dhairyya.models.Client;
+import edu.cmu.andrew.dhairyya.models.Session;
 import edu.cmu.andrew.dhairyya.utils.MongoPool;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
+import javax.ws.rs.core.HttpHeaders;
 import java.util.ArrayList;
 
 public class ClientManager  extends Manager{
@@ -49,8 +52,11 @@ public class ClientManager  extends Manager{
     }
 
 
-    public void updateClient( Client client) throws AppException {
+    public void updateClient(HttpHeaders headers, Client client) throws AppException {
         try {
+            Session session = SessionManager.getInstance().getSessionForToken(headers);
+            if(!session.getId().equals(client.getId()))
+                throw new AppUnauthorizedException(70,"Invalid client id");
             Bson filter = new Document("_id", new ObjectId(client.getId()));
             Bson newValue = new Document()
                     .append("clientId", client.getClientId())
@@ -67,7 +73,10 @@ public class ClientManager  extends Manager{
             else
                 throw new AppInternalServerException(0, "Failed to update client details");
 
-        } catch(Exception e) {
+        }catch(AppUnauthorizedException e) {
+            throw new AppUnauthorizedException(34, e.getMessage());
+        }
+        catch(Exception e) {
             throw handleException("Update client", e);
         }
     }
