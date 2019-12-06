@@ -31,7 +31,7 @@ public class ComputePriceManager extends Manager {
             FindIterable<Document> vendorDocs = vendorFoodListingsCollection.find();
             for (Document vendorDoc : vendorDocs) {
                 if (vendorDoc.getString("vendorId").equals(vendorId))
-                    price = Double.parseDouble(vendorDoc.getString("pricePerMeal"));
+                    price = vendorDoc.getDouble("pricePerMeal");
             }
             price *= noOfDays;
             return price;
