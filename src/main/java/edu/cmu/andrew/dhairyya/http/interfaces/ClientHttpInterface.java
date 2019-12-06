@@ -60,7 +60,7 @@ public class ClientHttpInterface extends HttpInterface {
     @Path("/{clientId}")
     @Consumes({ MediaType.APPLICATION_JSON})
     @Produces({ MediaType.APPLICATION_JSON})
-    public AppResponse patchClient(Object request, @PathParam("clientId") String clientId){
+    public AppResponse patchClient(@Context HttpHeaders headers,Object request, @PathParam("clientId") String clientId){
 
         JSONObject json;
 
@@ -77,7 +77,7 @@ public class ClientHttpInterface extends HttpInterface {
                     json.getString("password")
             );
 
-            ClientManager.getInstance().updateClient(client);
+            ClientManager.getInstance().updateClient(headers,client);
 
         }catch (Exception e){
             throw handleException("PATCH clients/{clientId}", e);

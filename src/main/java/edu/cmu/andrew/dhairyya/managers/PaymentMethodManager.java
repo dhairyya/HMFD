@@ -4,7 +4,6 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import edu.cmu.andrew.dhairyya.exceptions.AppException;
 import edu.cmu.andrew.dhairyya.exceptions.AppInternalServerException;
-import edu.cmu.andrew.dhairyya.models.Client;
 import edu.cmu.andrew.dhairyya.models.PaymentMethod;
 import edu.cmu.andrew.dhairyya.utils.MongoPool;
 import org.bson.Document;
