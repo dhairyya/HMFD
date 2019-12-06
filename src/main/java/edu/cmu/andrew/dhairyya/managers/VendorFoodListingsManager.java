@@ -58,9 +58,9 @@ public class VendorFoodListingsManager extends Manager {
                         vendorDoc.getString("vendorId"),
                         vendorDoc.getString("foodListingId"),
                         vendorDoc.getString("foodItemName"),
-                        Integer.parseInt(vendorDoc.getString("quantityOfItem")),
-                        Double.parseDouble(vendorDoc.getString("pricePerMeal")),
-                        Double.parseDouble(vendorDoc.getString("caloriesPerMeal")),
+                        vendorDoc.getInteger("quantityOfItem"),
+                        vendorDoc.getDouble("pricePerMeal"),
+                        vendorDoc.getDouble("caloriesPerMeal"),
                         vendorDoc.getString("keyIngredients"),
                         vendorDoc.getString("dayOfTheWeek")
                 );
@@ -84,9 +84,9 @@ public class VendorFoodListingsManager extends Manager {
                             vendorDoc.getString("vendorId"),
                             vendorDoc.getString("foodListingId"),
                             vendorDoc.getString("foodItemName"),
-                            Integer.parseInt(vendorDoc.getString("quantityOfItem")),
-                            Double.parseDouble(vendorDoc.getString("pricePerMeal")),
-                            Double.parseDouble(vendorDoc.getString("caloriesPerMeal")),
+                            vendorDoc.getInteger("quantityOfItem"),
+                            vendorDoc.getDouble("pricePerMeal"),
+                           vendorDoc.getDouble("caloriesPerMeal"),
                             vendorDoc.getString("keyIngredients"),
                             vendorDoc.getString("dayOfTheWeek")
                     );
