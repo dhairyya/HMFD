@@ -99,30 +99,4 @@ public class VendorFoodListingsManager extends Manager {
     }
 }
 
-
-    public ArrayList<FoodListings> getFoodListingByFoodId(String vendorId) throws AppException {
-        try {
-            ArrayList<FoodListings> vendorFoodList = new ArrayList<>();
-            FindIterable<Document> vendorDocs = vendorFoodListingsCollection.find();
-            for (Document vendorDoc : vendorDocs) {
-                if (vendorDoc.getString("foodListingId").equals(vendorId)) {
-                    FoodListings foodListings = new FoodListings(
-                            vendorDoc.getObjectId("_id").toString(),
-                            vendorDoc.getString("vendorId"),
-                            vendorDoc.getString("foodListingId"),
-                            vendorDoc.getString("foodItemName"),
-                            Integer.parseInt(vendorDoc.getString("quantityOfItem")),
-                            Double.parseDouble(vendorDoc.getString("pricePerMeal")),
-                            Double.parseDouble(vendorDoc.getString("caloriesPerMeal")),
-                            vendorDoc.getString("keyIngredients"),
-                            vendorDoc.getString("dayOfTheWeek")
-                    );
-                    vendorFoodList.add(foodListings);
-                }
-            }
-            return new ArrayList<>(vendorFoodList);
-        } catch(Exception e){
-            throw handleException("Get Vendor Food List By Id", e);
-        }
-    }
 }
