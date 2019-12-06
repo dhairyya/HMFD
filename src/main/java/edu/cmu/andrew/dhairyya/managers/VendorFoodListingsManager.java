@@ -32,7 +32,7 @@ public class VendorFoodListingsManager extends Manager {
                     .append("foodListingId", foodlistings.getFoodListingId())
                     .append("foodItemName", foodlistings.getFoodItemName())
                     .append("quantityOfItem", foodlistings.getQuantityOfItem())
-                    .append("pricePerMeal", foodlistings.getPricePerMeal())
+                    .append("pricePerMeal", foodlistings.getPrice())
                     .append("caloriesPerMeal", foodlistings.getCaloriesPerMeal())
                     .append("keyIngredients", foodlistings.getKeyIngredients())
                     .append("dayOfTheWeek", foodlistings.getDayOfTheWeek());
