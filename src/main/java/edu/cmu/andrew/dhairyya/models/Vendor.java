@@ -7,7 +7,7 @@ public class Vendor {
     private String email;
     private String phoneNumber;
     private String nameOfBusiness;
-    private String cuisineId;
+    private String cuisine;
     private String addressStreetNumber;
     private String addressCity;
     private String addressState;
@@ -21,14 +21,14 @@ public class Vendor {
     private String cookingLicenseState;
     private String cookingLicenseExpiry;
 
-    public Vendor(String id, String vendorId, String fullName, String email, String phoneNumber, String nameOfBusiness, String cuisineId, String addressStreetNumber, String addressCity, String addressState, String addressZip, String addressCountry, String specificFoodExpertiseList, String description, String password, String socialSecurityNumber, String cookingLicenseNumber, String cookingLicenseState, String cookingLicenseExpiry) {
+    public Vendor(String id, String vendorId, String fullName, String email, String phoneNumber, String nameOfBusiness, String cuisine, String addressStreetNumber, String addressCity, String addressState, String addressZip, String addressCountry, String specificFoodExpertiseList, String description, String password, String socialSecurityNumber, String cookingLicenseNumber, String cookingLicenseState, String cookingLicenseExpiry) {
         this.id = id;
         this.vendorId = vendorId;
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.nameOfBusiness = nameOfBusiness;
-        this.cuisineId = cuisineId;
+        this.cuisine = cuisine;
         this.addressStreetNumber = addressStreetNumber;
         this.addressCity = addressCity;
         this.addressState = addressState;
@@ -91,12 +91,12 @@ public class Vendor {
         this.nameOfBusiness = nameOfBusiness;
     }
 
-    public String getCuisineId() {
-        return cuisineId;
+    public String getCuisine() {
+        return cuisine;
     }
 
-    public void setCuisineId(String cuisineId) {
-        this.cuisineId = cuisineId;
+    public void setCuisine(String cuisine) {
+        this.cuisine = cuisine;
     }
 
     public String getAddressStreetNumber() {
