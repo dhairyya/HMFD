@@ -129,7 +129,7 @@ public class VendorManager extends Manager{
                          vendorDoc.getString("socialSecurityNumber"),
                          vendorDoc.getString("cookingLicenseNumber"),
                          vendorDoc.getString("cookingLicenseState"),
-                         vendorDoc.getString("cookingLicenseExpiry")
+                         vendorDoc.getDate("cookingLicenseExpiry")
                 );
                 vendorList.add(vendor);
             }
@@ -164,7 +164,7 @@ public class VendorManager extends Manager{
                             vendorDoc.getString("socialSecurityNumber"),
                             vendorDoc.getString("cookingLicenseNumber"),
                             vendorDoc.getString("cookingLicenseState"),
-                            vendorDoc.getString("cookingLicenseExpiry")
+                            vendorDoc.getDate("cookingLicenseExpiry")
                     );
                     vendorList.add(vendor);
                 }
@@ -211,7 +211,7 @@ public class VendorManager extends Manager{
                         vendorDoc.getString("socialSecurityNumber"),
                         vendorDoc.getString("cookingLicenseNumber"),
                         vendorDoc.getString("cookingLicenseState"),
-                        vendorDoc.getString("cookingLicenseExpiry")
+                        vendorDoc.getDate("cookingLicenseExpiry")
                 );
                 vendorList.add(vendor);
             }
@@ -247,7 +247,7 @@ public class VendorManager extends Manager{
                         vendorDoc.getString("socialSecurityNumber"),
                         vendorDoc.getString("cookingLicenseNumber"),
                         vendorDoc.getString("cookingLicenseState"),
-                        vendorDoc.getString("cookingLicenseExpiry")
+                        vendorDoc.getDate("cookingLicenseExpiry")
                 );
                 vendorList.add(user);
             }
@@ -282,7 +282,7 @@ public class VendorManager extends Manager{
                             vendorDoc.getString("socialSecurityNumber"),
                             vendorDoc.getString("cookingLicenseNumber"),
                             vendorDoc.getString("cookingLicenseState"),
-                            vendorDoc.getString("cookingLicenseExpiry")
+                            vendorDoc.getDate("cookingLicenseExpiry")
                     );
                     vendorList.add(vendor);
                 }

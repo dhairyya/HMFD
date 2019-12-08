@@ -57,7 +57,7 @@ public class PaymentMethodManager extends Manager {
                             paymentMethodDoc.getString("cardType"),
                             paymentMethodDoc.getString("cardNumber"),
                             paymentMethodDoc.getString("cardProviderType"),
-                            paymentMethodDoc.getString("expiration"),
+                            paymentMethodDoc.getDate("expiration"),
                             paymentMethodDoc.getString("cvv")
                     );
                     paymentMethodList.add(pm);
@@ -81,7 +81,7 @@ public class PaymentMethodManager extends Manager {
                             paymentMethodDoc.getString("cardType"),
                             paymentMethodDoc.getString("cardNumber"),
                             paymentMethodDoc.getString("cardProviderType"),
-                            paymentMethodDoc.getString("expiration"),
+                            paymentMethodDoc.getDate("expiration"),
                             paymentMethodDoc.getString("cvv")
                     );
                     paymentMethodList.add(pm);
