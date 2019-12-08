@@ -1,5 +1,7 @@
 package edu.cmu.andrew.dhairyya.models;
 
+import java.util.Date;
+
 public class Vendor {
     private String id ;
     private String vendorId;
@@ -19,9 +21,9 @@ public class Vendor {
     private String socialSecurityNumber;
     private String cookingLicenseNumber;
     private String cookingLicenseState;
-    private String cookingLicenseExpiry;
+    private Date cookingLicenseExpiry;
 
-    public Vendor(String id, String vendorId, String fullName, String email, String phoneNumber, String nameOfBusiness, String cuisine, String addressStreetNumber, String addressCity, String addressState, String addressZip, String addressCountry, String specificFoodExpertiseList, String description, String password, String socialSecurityNumber, String cookingLicenseNumber, String cookingLicenseState, String cookingLicenseExpiry) {
+    public Vendor(String id, String vendorId, String fullName, String email, String phoneNumber, String nameOfBusiness, String cuisine, String addressStreetNumber, String addressCity, String addressState, String addressZip, String addressCountry, String specificFoodExpertiseList, String description, String password, String socialSecurityNumber, String cookingLicenseNumber, String cookingLicenseState, Date cookingLicenseExpiry) {
         this.id = id;
         this.vendorId = vendorId;
         this.fullName = fullName;
@@ -187,11 +189,11 @@ public class Vendor {
         this.cookingLicenseState = cookingLicenseState;
     }
 
-    public String getCookingLicenseExpiry() {
+    public Date getCookingLicenseExpiry() {
         return cookingLicenseExpiry;
     }
 
-    public void setCookingLicenseExpiry(String cookingLicenseExpiry) {
+    public void setCookingLicenseExpiry(Date cookingLicenseExpiry) {
         this.cookingLicenseExpiry = cookingLicenseExpiry;
     }
 }
