@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import edu.cmu.andrew.dhairyya.http.exceptions.HttpBadRequestException;
 import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
 import edu.cmu.andrew.dhairyya.http.utils.PATCH;
-import edu.cmu.andrew.dhairyya.managers.ClientManager;
-import edu.cmu.andrew.dhairyya.managers.PaymentMethodManager;
-import edu.cmu.andrew.dhairyya.managers.RatingManager;
-import edu.cmu.andrew.dhairyya.managers.ReviewManager;
+import edu.cmu.andrew.dhairyya.managers.*;
 import edu.cmu.andrew.dhairyya.models.Client;
 import edu.cmu.andrew.dhairyya.models.PaymentMethod;
 import edu.cmu.andrew.dhairyya.models.Rating;
@@ -231,6 +228,23 @@ public class ClientHttpInterface extends HttpInterface {
         }
     }
 
+    @GET
+    @Path("/paymentMethod/reset")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse resetPaymentMethodForClient(@Context HttpHeaders headers) {
+        try {
+            AppLogger.info("Got an API call");
+            String message = PaymentMethodManager.getInstance().resetPaymentMethodData();
+
+            if (message != null)
+                return new AppResponse(message);
+            else
+                throw new HttpBadRequestException(0, "Problem with resetting payment Method data");
+        } catch (Exception e) {
+            throw handleException("GET clients/paymentMethod/reset", e);
+        }
+    }
+
 
     @POST
     @Path("/{clientId}/reviews")
@@ -292,6 +306,22 @@ public class ClientHttpInterface extends HttpInterface {
         }
     }
 
+    @GET
+    @Path("/reviews/reset")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse resetReviewForClient(@Context HttpHeaders headers) {
+        try {
+            AppLogger.info("Got an API call");
+            String message = ReviewManager.getInstance().resetReviewData();
+
+            if (message != null)
+                return new AppResponse(message);
+            else
+                throw new HttpBadRequestException(0, "Problem with resetting review data");
+        } catch (Exception e) {
+            throw handleException("GET /clients/reviews/reset", e);
+        }
+    }
 
     @POST
     @Path("/{clientId}/ratings")
@@ -317,7 +347,6 @@ public class ClientHttpInterface extends HttpInterface {
             throw handleException("POST clients/{clientId}/ratings", e);
         }
     }
-
 
     @GET
     @Path("/{clientId}/ratings")
@@ -352,5 +381,23 @@ public class ClientHttpInterface extends HttpInterface {
             throw handleException("GET /clients/ratings", e);
         }
     }
+
+    @GET
+    @Path("/ratings/reset")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse resetRatingForClient(@Context HttpHeaders headers) {
+        try {
+            AppLogger.info("Got an API call");
+            String message = RatingManager.getInstance().resetRatingData();
+
+            if (message != null)
+                return new AppResponse(message);
+            else
+                throw new HttpBadRequestException(0, "Problem with resetting rating data");
+        } catch (Exception e) {
+            throw handleException("GET /clients/ratings/reset", e);
+        }
+    }
+
 
 }
