@@ -20,6 +20,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 @Path("/clients")
@@ -180,7 +181,7 @@ public class ClientHttpInterface extends HttpInterface {
                     json.getString("cardType"),
                     json.getString("cardNumber"),
                     json.getString("cardProviderType"),
-                    json.getString("expiration"),
+                    new SimpleDateFormat("dd/MM/yyyy").parse(json.getString("expiration")),
                     json.getString("cvv")
             );
 

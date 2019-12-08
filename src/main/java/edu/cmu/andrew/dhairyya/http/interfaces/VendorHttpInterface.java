@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import edu.cmu.andrew.dhairyya.http.exceptions.HttpBadRequestException;
 import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
 import edu.cmu.andrew.dhairyya.http.utils.PATCH;
+import edu.cmu.andrew.dhairyya.managers.BankAccountManager;
 import edu.cmu.andrew.dhairyya.managers.VendorManager;
+import edu.cmu.andrew.dhairyya.models.BankAccount;
 import edu.cmu.andrew.dhairyya.models.Vendor;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
 import org.json.JSONObject;
@@ -14,6 +16,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 @Path("/vendors")
@@ -52,7 +55,7 @@ public class VendorHttpInterface extends HttpInterface {
                     json.getString("socialSecurityNumber"),
                     json.getString("cookingLicenseNumber"),
                     json.getString("cookingLicenseState"),
-                    json.getString("cookingLicenseExpiry")
+                    new SimpleDateFormat("dd/MM/yyyy").parse(json.getString("cookingLicenseExpiry"))
             );
             VendorManager.getInstance().createVendor(newVendor);
             return new AppResponse("Insert Successful");
@@ -91,7 +94,7 @@ public class VendorHttpInterface extends HttpInterface {
                     json.getString("socialSecurityNumber"),
                     json.getString("cookingLicenseNumber"),
                     json.getString("cookingLicenseState"),
-                    json.getString("cookingLicenseExpiry")
+                    new SimpleDateFormat("dd/MM/yyyy").parse(json.getString("cookingLicenseExpiry"))
             );
 
             VendorManager.getInstance().updateVendor(headers,vendor);
@@ -180,5 +183,65 @@ public class VendorHttpInterface extends HttpInterface {
         }
     }
 
+    @POST
+    @Path("/{vendorId}/bankaccounts")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse insertBankAccountForVendor(Object request,@PathParam("vendorId") String vendorId){
+
+        try{
+            JSONObject json = new JSONObject(ow.writeValueAsString(request));
+
+            BankAccount ba = new BankAccount(
+                    null,
+                    vendorId,
+                    json.getString("routingNumber"),
+                    json.getString("bankAccountNumber")
+            );
+
+            BankAccountManager.getInstance().createBankAccount(ba);
+            return new AppResponse("Insert Successful");
+
+        }catch (Exception e){
+            throw handleException("POST /vendors/{vendorId}/bankaccounts", e);
+        }
+    }
+
+    @GET
+    @Path("/{vendorId}/bankaccounts")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse getBankAccountsForVendorId(@Context HttpHeaders headers, @PathParam("vendorId") String vendorId){
+
+        try{
+            AppLogger.info("Got an API call");
+            ArrayList<BankAccount> bankAccounts = BankAccountManager.getInstance().getBankAccountByVendorId(vendorId);
+
+            if(bankAccounts != null)
+                return new AppResponse(bankAccounts);
+            else
+                throw new HttpBadRequestException(0, "Problem with getting bank Accounts for vendor");
+        }catch (Exception e){
+            throw handleException("GET /vendors/{vendorId}/bankaccounts", e);
+        }
+    }
+
+
+    @GET
+    @Path("/bankAccounts/{bankAccountId}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse getBankAccountById(@Context HttpHeaders headers, @PathParam("bankAccountId") String bankAccountId){
+
+        try{
+            AppLogger.info("Got an API call");
+            ArrayList<BankAccount> bankAccounts = BankAccountManager.getInstance().getBankAccountByBankAccountId(bankAccountId);
+
+            if(bankAccounts != null)
+                return new AppResponse(bankAccounts);
+            else
+                throw new HttpBadRequestException(0, "Problem with getting bank accounts by Id");
+        }catch (Exception e){
+            throw handleException("GET /vendors/bankAccounts/{bankAccountId}", e);
+        }
+    }
 
 }
