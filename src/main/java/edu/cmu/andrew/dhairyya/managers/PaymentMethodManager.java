@@ -8,7 +8,9 @@ import edu.cmu.andrew.dhairyya.models.PaymentMethod;
 import edu.cmu.andrew.dhairyya.utils.MongoPool;
 import org.bson.Document;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class PaymentMethodManager extends Manager {
@@ -91,5 +93,29 @@ public class PaymentMethodManager extends Manager {
         } catch(Exception e){
             throw handleException("Get Payment Method By Id", e);
         }
+    }
+
+    public String resetPaymentMethodData() throws AppException{
+        try {
+            paymentMethodCollection.drop();
+            MongoPool.getInstance().createCollection("paymentMethods");
+            collectionInsert("C02", "Debit", "4242424242424242", "Visa", new SimpleDateFormat("dd/MM/yyyy").parse("12/11/2021"), "500");
+            collectionInsert("C02", "Credit", "5800580058005800", "MasterCard", new SimpleDateFormat("dd/MM/yyyy").parse("05/09/2023"),"600");
+            return "Successful reset of Payment Method Collection Data";
+        }
+        catch(Exception e){
+            throw handleException("Resetting Payment Method Collection Data", e);
+        }
+    }
+
+    private void collectionInsert( String clientId,String cardType, String cardNumber, String cardProviderType, Date expiration, String cvv) {
+        Document document = new Document()
+                .append("clientId", clientId)
+                .append("cardType", cardType)
+                .append("cardNumber", cardNumber)
+                .append("cardProviderType",cardProviderType)
+                .append("expiration",expiration)
+                .append("cvv",cvv);
+        paymentMethodCollection.insertOne(document);
     }
 }
