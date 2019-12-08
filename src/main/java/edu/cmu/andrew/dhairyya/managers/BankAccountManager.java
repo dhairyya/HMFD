@@ -85,6 +85,30 @@ public class BankAccountManager extends Manager{
             throw handleException("Get Bank Accounts By Bank Account Id", e);
         }
     }
+
+    public String resetBankAccountData() throws AppException{
+        try {
+            bankAccountCollection.drop();
+            MongoPool.getInstance().createCollection("vendors");
+            collectionInsert("V01", "130111980", "310020056000");
+            collectionInsert("V02", "169800432", "456789023901");
+            collectionInsert("V03", "830024567", "678913568002");
+            collectionInsert("V04", "973178652", "213456789123");
+            collectionInsert("V05", "456120879", "134567954286");
+            return "Successful reset of Bank Account Collection Data";
+        }
+        catch(Exception e){
+            throw handleException("Resetting Bank Account Collection Data", e);
+        }
+    }
+
+    private void collectionInsert( String vendorId, String routingNumber, String bankAccountNumber) {
+        Document document = new Document()
+                .append("vendorId", vendorId)
+                .append("fullName", routingNumber)
+                .append("email", bankAccountNumber);
+        bankAccountCollection.insertOne(document);
+    }
 }
 
 
