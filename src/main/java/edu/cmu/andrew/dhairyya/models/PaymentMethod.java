@@ -1,5 +1,7 @@
 package edu.cmu.andrew.dhairyya.models;
 
+import java.util.Date;
+
 public class PaymentMethod {
 
     private String id ;
@@ -7,10 +9,10 @@ public class PaymentMethod {
     private String cardType;
     private String cardNumber;
     private String cardProviderType;
-    private String expiration;
+    private Date expiration;
     private String cvv;
 
-    public PaymentMethod(String id, String clientId, String cardType, String cardNumber, String cardProviderType, String expiration, String cvv) {
+    public PaymentMethod(String id, String clientId, String cardType, String cardNumber, String cardProviderType, Date expiration, String cvv) {
         this.id = id;
         this.clientId = clientId;
         this.cardType = cardType;
@@ -60,11 +62,11 @@ public class PaymentMethod {
         this.cardProviderType = cardProviderType;
     }
 
-    public String getExpiration() {
+    public Date getExpiration() {
         return expiration;
     }
 
-    public void setExpiration(String expiration) {
+    public void setExpiration(Date expiration) {
         this.expiration = expiration;
     }
 
