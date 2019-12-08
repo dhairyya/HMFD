@@ -244,4 +244,21 @@ public class VendorHttpInterface extends HttpInterface {
         }
     }
 
+    @GET
+    @Path("/bankAccounts/reset")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse resetBankAccountDataForVendor(@Context HttpHeaders headers) {
+        try {
+            AppLogger.info("Got an API call");
+            String message = BankAccountManager.getInstance().resetBankAccountData();
+
+            if (message != null)
+                return new AppResponse(message);
+            else
+                throw new HttpBadRequestException(0, "Problem with resetting bank Account data");
+        } catch (Exception e) {
+            throw handleException("GET /vendors/bankAccounts/reset", e);
+        }
+    }
+
 }
