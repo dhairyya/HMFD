@@ -313,14 +313,14 @@ public class VendorManager extends Manager{
     }
 
 
-    private void collectionInsert( String vendorId, String fullName, String email, String phoneNumber,String nameOfBusiness,String cuisineId,String addressStreetNumber,String addressCity,String addressState,String addressZip,String addressCountry,String specificFoodExpertiseList,String description,String password,String socialSecurityNumber,String cookingLicenseNumber,String cookingLicenseState,String cookingLicenseExpiry)throws ParseException {
+    private void collectionInsert( String vendorId, String fullName, String email, String phoneNumber,String nameOfBusiness,String cuisine,String addressStreetNumber,String addressCity,String addressState,String addressZip,String addressCountry,String specificFoodExpertiseList,String description,String password,String socialSecurityNumber,String cookingLicenseNumber,String cookingLicenseState,String cookingLicenseExpiry)throws ParseException {
         Document document = new Document()
                 .append("vendorId", vendorId)
                 .append("fullName", fullName)
                 .append("email", email)
                 .append("phoneNumber", phoneNumber)
                 .append("nameOfBusiness", nameOfBusiness)
-                .append("cuisineId", cuisineId)
+                .append("cuisine", cuisine)
                 .append("addressStreetNumber", addressStreetNumber)
                 .append("addressCity", addressCity)
                 .append("addressState", addressState)

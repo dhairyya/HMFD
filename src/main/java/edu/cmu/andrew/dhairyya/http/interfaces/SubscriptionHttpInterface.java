@@ -104,7 +104,7 @@ public class SubscriptionHttpInterface extends HttpInterface  {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public AppResponse getVendors(@Context HttpHeaders headers, @QueryParam("sortby") String sortby, @QueryParam("offset") Integer offset,
-                                  @QueryParam("count") Integer count, @QueryParam("clientId") String clientId ,@QueryParam("filter") String filterName){
+                                  @QueryParam("count") Integer count, @QueryParam("client") String clientId ,@QueryParam("filter") String filterName){
         try{
             AppLogger.info("Got an API call");
             ArrayList<Subscriptions> subscriptions = null;
