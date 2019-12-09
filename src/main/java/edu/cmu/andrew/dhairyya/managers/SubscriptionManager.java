@@ -39,7 +39,7 @@ public class SubscriptionManager extends Manager {
                     .append("vendorId", subscriptions.getVendorId())
                     .append("price", subscriptions.getPrice())
                     .append("numberOfDays", subscriptions.getNumberOfDays())
-                    .append("bookingDate",subscriptions.getBookingdate());
+                    .append("bookingdate",subscriptions.getBookingdate());
             if (newDoc != null)
                 subscriptionsCollection.insertOne(newDoc);
             else
@@ -62,7 +62,7 @@ public class SubscriptionManager extends Manager {
                         subscriptionDoc.getString("vendorId"),
                        subscriptionDoc.getDouble("price"),
                         subscriptionDoc.getInteger("numberOfDays"),
-                        subscriptionDoc.getDate("bookingDate")
+                        subscriptionDoc.getDate("bookingdate")
                 );
                 subscriptionsList.add(subscriptions);
             }
@@ -84,9 +84,9 @@ public class SubscriptionManager extends Manager {
                             subscriptionDoc.getString("subscriptionId"),
                             subscriptionDoc.getString("clientId"),
                             subscriptionDoc.getString("vendorId"),
-                            Double.parseDouble(subscriptionDoc.getString("price")),
-                            Integer.parseInt(subscriptionDoc.getString("numberOfDays")),
-                            new SimpleDateFormat("dd/MM/yyyy").parse(subscriptionDoc.getString("bookingDate"))
+                            subscriptionDoc.getDouble("price"),
+                            subscriptionDoc.getInteger("numberOfDays"),
+                            subscriptionDoc.getDate("bookingdate")
                     );
                     subscriptionsList.add(subscriptions);
                 }
@@ -109,9 +109,9 @@ public class SubscriptionManager extends Manager {
                             subscriptionDoc.getString("subscriptionId"),
                             subscriptionDoc.getString("clientId"),
                             subscriptionDoc.getString("vendorId"),
-                            Double.parseDouble(subscriptionDoc.getString("price")),
-                            Integer.parseInt(subscriptionDoc.getString("numberOfDays")),
-                            new SimpleDateFormat("dd/MM/yyyy").parse(subscriptionDoc.getString("bookingDate"))
+                            subscriptionDoc.getDouble("price"),
+                            subscriptionDoc.getInteger("numberOfDays"),
+                          subscriptionDoc.getDate("bookingdate")
                     );
                     subscriptionsList.add(subscriptions);
                 }
@@ -145,9 +145,9 @@ public class SubscriptionManager extends Manager {
                         subscriptionsDoc.getString("subscriptionId"),
                         subscriptionsDoc.getString("clientId"),
                         subscriptionsDoc.getString("vendorId"),
-                        Double.parseDouble(subscriptionsDoc.getString("price")),
-                        Integer.parseInt(subscriptionsDoc.getString("numberOfDays")),
-                        new SimpleDateFormat("dd/MM/yyyy").parse(subscriptionsDoc.getString("bookingDate"))
+                       subscriptionsDoc.getDouble("price"),
+                       subscriptionsDoc.getInteger("numberOfDays"),
+                        subscriptionsDoc.getDate("bookingdate")
                 );
                 subscriptionsList.add(subscriptions);
             }
@@ -169,9 +169,9 @@ public class SubscriptionManager extends Manager {
                         subscriptionDoc.getString("subscriptionId"),
                         subscriptionDoc.getString("clientId"),
                         subscriptionDoc.getString("vendorId"),
-                        Double.parseDouble(subscriptionDoc.getString("price")),
-                        Integer.parseInt(subscriptionDoc.getString("numberOfDays")),
-                        new SimpleDateFormat("dd/MM/yyyy").parse(subscriptionDoc.getString("bookingDate"))
+                       subscriptionDoc.getDouble("price"),
+                        subscriptionDoc.getInteger("numberOfDays"),
+                        subscriptionDoc.getDate("bookingdate")
                 );
                 subscriptionList.add(subscriptions);
             }
@@ -186,8 +186,9 @@ public class SubscriptionManager extends Manager {
             ArrayList<Subscriptions> subscriptionsList = new ArrayList<>();
             FindIterable<Document> subscriptionDocs = subscriptionsCollection.find();
             for(Document subscriptionDoc: subscriptionDocs) {
-                Date bookingDate = subscriptionDoc.getDate("bookingDate");
+                Date bookingDate = subscriptionDoc.getDate("bookingdate");
                 Date systemDate = new Date();
+                System.out.println(bookingDate + " " + systemDate);
                 long difference =  (systemDate.getTime()-bookingDate.getTime())/86400000;
                 if(difference<=7) {
                     Subscriptions subscriptions = new Subscriptions(
@@ -195,9 +196,9 @@ public class SubscriptionManager extends Manager {
                             subscriptionDoc.getString("subscriptionId"),
                             subscriptionDoc.getString("clientId"),
                             subscriptionDoc.getString("vendorId"),
-                            Double.parseDouble(subscriptionDoc.getString("price")),
-                            Integer.parseInt(subscriptionDoc.getString("numberOfDays")),
-                            new SimpleDateFormat("dd/MM/yyyy").parse(subscriptionDoc.getString("bookingDate"))
+                           subscriptionDoc.getDouble("price"),
+                           subscriptionDoc.getInteger("numberOfDays"),
+                            subscriptionDoc.getDate("bookingdate")
                     );
                     subscriptionsList.add(subscriptions);
                 }
