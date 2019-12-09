@@ -122,7 +122,7 @@ public class SessionManager {
                 item.getString("socialSecurityNumber"),
                 item.getString("cookingLicenseNumber"),
                 item.getString("cookingLicenseState"),
-                item.getString("cookingLicenseExpiry")
+                item.getDate("cookingLicenseExpiry")
         );
 
     }

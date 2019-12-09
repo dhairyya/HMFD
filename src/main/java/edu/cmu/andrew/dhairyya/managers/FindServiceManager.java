@@ -35,7 +35,7 @@ public class FindServiceManager extends Manager{
             FindIterable<Document> vendorDocs = vendorCollection.find();
             for(Document vendorDoc: vendorDocs) {
                 if (vendorDoc.getString("addressZip").equals(addressZip)) {
-                    String cuisine = vendorDoc.getString("cuisineId");
+                    String cuisine = vendorDoc.getString("cuisine");
                     if (!cuisineList.contains(cuisine))
                         cuisineList.add(cuisine);
                 }
@@ -73,7 +73,7 @@ public class FindServiceManager extends Manager{
                             vendorDoc.getString("socialSecurityNumber"),
                             vendorDoc.getString("cookingLicenseNumber"),
                             vendorDoc.getString("cookingLicenseState"),
-                            vendorDoc.getString("cookingLicenseExpiry")
+                            vendorDoc.getDate("cookingLicenseExpiry")
                     );
                     String vendorId = vendorDoc.getString("vendorId");
 
