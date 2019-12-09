@@ -53,7 +53,7 @@ public class FindServiceManager extends Manager{
 
             FindIterable<Document> vendorDocs = vendorCollection.find();
             for(Document vendorDoc: vendorDocs) {
-                if (vendorDoc.getString("addressZip").equals(addressZip) && vendorDoc.getString("cuisineId").equals("cuisine")) {
+                if (vendorDoc.getString("addressZip").equals(addressZip) && vendorDoc.getString("cuisine").equals(cuisine)) {
                     Vendor vendor = new Vendor(
                             vendorDoc.getObjectId("_id").toString(),
                             vendorDoc.getString("vendorId"),
@@ -61,7 +61,7 @@ public class FindServiceManager extends Manager{
                             vendorDoc.getString("email"),
                             vendorDoc.getString("phoneNumber"),
                             vendorDoc.getString("nameOfBusiness"),
-                            vendorDoc.getString("cuisineId"),
+                            vendorDoc.getString("cuisine"),
                             vendorDoc.getString("addressStreetNumber"),
                             vendorDoc.getString("addressCity"),
                             vendorDoc.getString("addressState"),
@@ -86,9 +86,9 @@ public class FindServiceManager extends Manager{
                                     vendorFoodListDoc.getString("vendorId"),
                                     vendorFoodListDoc.getString("foodListingId"),
                                     vendorFoodListDoc.getString("foodItemName"),
-                                    Integer.parseInt(vendorFoodListDoc.getString("quantityOfItem")),
-                                    Double.parseDouble(vendorFoodListDoc.getString("pricePerMeal")),
-                                    Double.parseDouble(vendorFoodListDoc.getString("caloriesPerMeal")),
+                                    vendorFoodListDoc.getInteger("quantityOfItem"),
+                                    vendorFoodListDoc.getDouble("price"),
+                                    vendorFoodListDoc.getDouble("caloriesPerMeal"),
                                     vendorFoodListDoc.getString("keyIngredients"),
                                     vendorFoodListDoc.getString("dayOfTheWeek")
                             );
