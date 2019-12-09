@@ -2,13 +2,16 @@
 
 This is the course project for CMU MSSM course 49787-A (Architecture & Programming Principles). 
 
-## Project 9 Part
+## Final Project Part
 
 Ritu Rao worked on the vendor part<br />
 Dhairyya Agarwal worked on the client part
 
-Link to Google Document: https://docs.google.com/document/d/10QI2CQRWLlw7oHNZJPUPwQAtU4jkZQ5pt96uhrQRjoM/edit?usp=sharing
+Link to Google Document: https://docs.google.com/document/d/1SE_ok3kHdn_SIzDqBpPu0kHNZoFv3dRgCDUiqiIs36o/edit?usp=sharing
 
+Link to Reset Data: https://docs.google.com/spreadsheets/d/1vMhlzkVZ4oCEIBJ-3zxLMxK53TEXnQwdrBLDmDgZ0H0/edit?usp=sharing
+
+Link to API Specification:https://docs.google.com/document/d/1MVIT5LrDoo7mSR3radOD9MrW3M8sQGffxDsCWFrw4Ko/edit?usp=sharing
 ## Problem Statement
 
 Away from home, food choices and food options are becoming a growing challenge. What is more critical is finding the right options close to one’s community and geographical choices. In such scenarios people migrating and entering into different regions from foreign places tend to lose on the healthy and home-like food options. Undernourished food over time causes greater losses. HMFD will enable healthy, nutritious and timely food delivery to all it’s subscribers, by monitoring choices and delivering food at the doorstep for subscribers, daily.
