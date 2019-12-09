@@ -48,7 +48,7 @@ public class PlatformEarningsManager  extends Manager {
                     PlatformEarnings platformEarnings = new PlatformEarnings(
                             platformEarningDoc.getObjectId("_id").toString(),
                             platformEarningDoc.getString("subscriptionId"),
-                           Double.parseDouble(platformEarningDoc.getString("clientId"))
+                          platformEarningDoc.getDouble("platformEarnings")
                     );
                     platformEarningsList.add(platformEarnings);
             }
@@ -67,7 +67,7 @@ public class PlatformEarningsManager  extends Manager {
                     PlatformEarnings platformEarnings = new PlatformEarnings(
                             platformEarningDoc.getObjectId("_id").toString(),
                             platformEarningDoc.getString("subscriptionId"),
-                            Double.parseDouble(platformEarningDoc.getString("clientId"))
+                            platformEarningDoc.getDouble("platformEarnings")
                     );
                     platformEarningsList.add(platformEarnings);
                 }
