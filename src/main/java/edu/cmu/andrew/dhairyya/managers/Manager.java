@@ -1,11 +1,9 @@
 package edu.cmu.andrew.dhairyya.managers;
 
-import com.mongodb.client.MongoCollection;
+
 import edu.cmu.andrew.dhairyya.exceptions.AppException;
 import edu.cmu.andrew.dhairyya.exceptions.AppInternalServerException;
-import edu.cmu.andrew.dhairyya.utils.MongoPool;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
-import org.bson.Document;
 
 public class Manager {
 
