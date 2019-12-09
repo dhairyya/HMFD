@@ -194,7 +194,7 @@ public class VendorHttpInterface extends HttpInterface {
 
             BankAccount ba = new BankAccount(
                     null,
-                    vendorId,
+                    json.getString("vendorId"),
                     json.getString("routingNumber"),
                     json.getString("bankAccountNumber")
             );

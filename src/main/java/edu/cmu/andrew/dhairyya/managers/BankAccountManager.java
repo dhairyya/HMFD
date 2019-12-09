@@ -89,7 +89,7 @@ public class BankAccountManager extends Manager{
     public String resetBankAccountData() throws AppException{
         try {
             bankAccountCollection.drop();
-            MongoPool.getInstance().createCollection("vendors");
+            MongoPool.getInstance().createCollection("bankAccounts");
             collectionInsert("V01", "130111980", "310020056000");
             collectionInsert("V02", "169800432", "456789023901");
             collectionInsert("V03", "830024567", "678913568002");
@@ -105,8 +105,8 @@ public class BankAccountManager extends Manager{
     private void collectionInsert( String vendorId, String routingNumber, String bankAccountNumber) {
         Document document = new Document()
                 .append("vendorId", vendorId)
-                .append("fullName", routingNumber)
-                .append("email", bankAccountNumber);
+                .append("routingNumber", routingNumber)
+                .append("bankAccountNumber", bankAccountNumber);
         bankAccountCollection.insertOne(document);
     }
 }
