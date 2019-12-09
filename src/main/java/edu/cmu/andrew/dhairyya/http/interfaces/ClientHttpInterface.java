@@ -50,7 +50,7 @@ public class ClientHttpInterface extends HttpInterface {
             return new AppResponse("Insert Successful");
 
         }catch (Exception e){
-            throw handleException("POST vendors", e);
+            throw handleException("POST clients", e);
         }
     }
 
@@ -178,7 +178,7 @@ public class ClientHttpInterface extends HttpInterface {
                     json.getString("cardType"),
                     json.getString("cardNumber"),
                     json.getString("cardProviderType"),
-                    new SimpleDateFormat("dd/MM/yyyy").parse(json.getString("expiration")),
+                    new SimpleDateFormat("MM/YY").parse(json.getString("expiration")),
                     json.getString("cvv")
             );
 

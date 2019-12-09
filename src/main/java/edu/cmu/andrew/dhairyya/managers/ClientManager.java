@@ -110,7 +110,7 @@ public class ClientManager  extends Manager{
             ArrayList<Client> clientList = new ArrayList<>();
             FindIterable<Document> clientDocs = clientCollection.find();
             for(Document clientDoc: clientDocs) {
-                if(clientDoc.getObjectId("_id").toString().equals(clientId)) {
+                if(clientDoc.getString("clientId").equals(clientId)) {
                     Client client = new Client(
                             clientDoc.getObjectId("_id").toString(),
                             clientDoc.getString("clientId"),
