@@ -3,7 +3,6 @@ package edu.cmu.andrew.dhairyya.http.interfaces;
 import edu.cmu.andrew.dhairyya.http.exceptions.HttpBadRequestException;
 import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
 import edu.cmu.andrew.dhairyya.managers.ComputePriceManager;
-import edu.cmu.andrew.dhairyya.managers.FindServiceManager;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
 
 import javax.ws.rs.GET;
@@ -13,7 +12,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

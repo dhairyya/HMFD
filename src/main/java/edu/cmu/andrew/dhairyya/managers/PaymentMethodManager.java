@@ -35,7 +35,7 @@ public class PaymentMethodManager extends Manager {
                     .append("cardType", pm.getCardType())
                     .append("cardNumber", pm.getCardNumber())
                     .append("cardProviderType", pm.getCardProviderType())
-                    .append("expiration", pm.getCardProviderType())
+                    .append("expiration", pm.getExpiration())
                     .append("cvv", pm.getCvv());
 
             if (newDoc != null)
@@ -99,8 +99,8 @@ public class PaymentMethodManager extends Manager {
         try {
             paymentMethodCollection.drop();
             MongoPool.getInstance().createCollection("paymentMethods");
-            collectionInsert("C02", "Debit", "4242424242424242", "Visa", new SimpleDateFormat("dd/MM/yyyy").parse("12/11/2021"), "500");
-            collectionInsert("C02", "Credit", "5800580058005800", "MasterCard", new SimpleDateFormat("dd/MM/yyyy").parse("05/09/2023"),"600");
+            collectionInsert("C02", "Debit", "4242424242424242", "Visa", new SimpleDateFormat("MM/YY").parse("12/21"), "500");
+            collectionInsert("C02", "Credit", "5800580058005800", "MasterCard", new SimpleDateFormat("MM/YY").parse("05/23"),"600");
             return "Successful reset of Payment Method Collection Data";
         }
         catch(Exception e){

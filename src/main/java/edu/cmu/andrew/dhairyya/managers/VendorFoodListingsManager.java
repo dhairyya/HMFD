@@ -5,12 +5,10 @@ import com.mongodb.client.MongoCollection;
 import edu.cmu.andrew.dhairyya.exceptions.AppException;
 import edu.cmu.andrew.dhairyya.exceptions.AppInternalServerException;
 import edu.cmu.andrew.dhairyya.models.FoodListings;
-import edu.cmu.andrew.dhairyya.models.Vendor;
 import edu.cmu.andrew.dhairyya.utils.MongoPool;
 import org.bson.Document;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class VendorFoodListingsManager extends Manager {
