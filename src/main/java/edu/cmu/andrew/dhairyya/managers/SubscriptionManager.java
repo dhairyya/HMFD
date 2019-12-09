@@ -208,4 +208,29 @@ public class SubscriptionManager extends Manager {
         }
     }
 
+    public String resetSubscriptionData() throws AppException{
+        try {
+            subscriptionsCollection.drop();
+            MongoPool.getInstance().createCollection("subscriptions");
+            collectionInsert("S01", "C01", "V02", 3568, 35,   new SimpleDateFormat("DD/MM/YYYY").parse("05/12/2019"));
+            collectionInsert("S02", "C01", "V03", 2051.9, 22,  new SimpleDateFormat("DD/MM/YYYY").parse("05/11/2018"));
+            return "Successful reset of Subscription Collection Data";
+        }
+        catch(Exception e){
+            throw handleException("Resetting Subscription Collection data", e);
+        }
+
+    }
+
+    private void collectionInsert( String subscriptionId, String clientId, String vendorId, double price,int numberOfDays,Date bookingdate) {
+        Document document = new Document()
+                .append("subscriptionId", subscriptionId)
+                .append("clientId", clientId)
+                .append("vendorId", vendorId)
+                .append("price", price)
+                .append("numberOfDays", numberOfDays)
+                .append("bookingdate", bookingdate);
+        subscriptionsCollection.insertOne(document);
+    }
+
 }

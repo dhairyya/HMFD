@@ -87,4 +87,25 @@ public class PlatformEarningsManager  extends Manager {
         }
     }
 
+    public String resetPlatformEarning() throws AppException{
+        try {
+            platformEarningsCollection.drop();
+            MongoPool.getInstance().createCollection("platformEarnings");
+            collectionInsert("S01", 310.9);
+            collectionInsert("S02", 124.5);
+            return "Successful reset of Platform Earnings Collection Data";
+        }
+        catch(Exception e){
+            throw handleException("Resetting Platform Earnings Collection data", e);
+        }
+
+    }
+
+    private void collectionInsert(String subscriptionId, double platformEarnings) {
+        Document document = new Document()
+                .append("subscriptionId", subscriptionId)
+                .append("platformEarnings", platformEarnings);
+        platformEarningsCollection.insertOne(document);
+    }
+
 }
