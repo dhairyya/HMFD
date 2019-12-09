@@ -80,4 +80,25 @@ public class ReviewManager  extends Manager{
             throw handleException("Get All Reviews", e);
         }
     }
+
+    public String resetReviewData() throws AppException{
+        try {
+            reviewCollection.drop();
+            MongoPool.getInstance().createCollection("reviews");
+            collectionInsert("C02","V02", "Great Food");
+            collectionInsert("C02", "V01","Okayish Food");
+            return "Successful reset of Review Collection Data";
+        }
+        catch(Exception e){
+            throw handleException("Resetting Review Collection Data", e);
+        }
+    }
+
+    private void collectionInsert( String clientId, String vendorId, String reviewText) {
+        Document document = new Document()
+                .append("clientId", clientId)
+                .append("vendorId", vendorId)
+                .append("reviewText", reviewText);
+        reviewCollection.insertOne(document);
+    }
 }

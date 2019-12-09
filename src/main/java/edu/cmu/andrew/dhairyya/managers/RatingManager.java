@@ -80,6 +80,27 @@ public class RatingManager extends Manager{
             throw handleException("Get All Ratings", e);
         }
     }
+
+    public String resetRatingData() throws AppException{
+        try {
+            ratingCollection.drop();
+            MongoPool.getInstance().createCollection("ratings");
+            collectionInsert("C02","V02", 2.1);
+            collectionInsert("C02", "V01",2.8);
+            return "Successful reset of Rating Collection Data";
+        }
+        catch(Exception e){
+            throw handleException("Resetting Rating Collection Data", e);
+        }
+    }
+
+    private void collectionInsert( String clientId, String vendorId, double rating) {
+        Document document = new Document()
+                .append("clientId", clientId)
+                .append("vendorId", vendorId)
+                .append("rating", rating);
+        ratingCollection.insertOne(document);
+    }
 }
 
 

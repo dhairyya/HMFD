@@ -14,6 +14,8 @@ import org.bson.types.ObjectId;
 import com.mongodb.BasicDBObject;
 
 import javax.ws.rs.core.HttpHeaders;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class VendorManager extends Manager{
@@ -39,7 +41,7 @@ public class VendorManager extends Manager{
                     .append("email", vendor.getEmail())
                     .append("phoneNumber", vendor.getEmail())
                     .append("nameOfBusiness", vendor.getNameOfBusiness())
-                    .append("cuisineId", vendor.getCuisineId())
+                    .append("cuisineId", vendor.getCuisine())
                     .append("addressStreetNumber", vendor.getAddressStreetNumber())
                     .append("addressCity", vendor.getAddressCity())
                     .append("addressState", vendor.getAddressState())
@@ -76,7 +78,7 @@ public class VendorManager extends Manager{
                     .append("email", vendor.getEmail())
                     .append("phoneNumber", vendor.getEmail())
                     .append("nameOfBusiness", vendor.getNameOfBusiness())
-                    .append("cuisineId", vendor.getCuisineId())
+                    .append("cuisineId", vendor.getCuisine())
                     .append("addressStreetNumber", vendor.getAddressStreetNumber())
                     .append("addressCity", vendor.getAddressCity())
                     .append("addressState", vendor.getAddressState())
@@ -129,7 +131,7 @@ public class VendorManager extends Manager{
                          vendorDoc.getString("socialSecurityNumber"),
                          vendorDoc.getString("cookingLicenseNumber"),
                          vendorDoc.getString("cookingLicenseState"),
-                         vendorDoc.getString("cookingLicenseExpiry")
+                         vendorDoc.getDate("cookingLicenseExpiry")
                 );
                 vendorList.add(vendor);
             }
@@ -164,7 +166,7 @@ public class VendorManager extends Manager{
                             vendorDoc.getString("socialSecurityNumber"),
                             vendorDoc.getString("cookingLicenseNumber"),
                             vendorDoc.getString("cookingLicenseState"),
-                            vendorDoc.getString("cookingLicenseExpiry")
+                            vendorDoc.getDate("cookingLicenseExpiry")
                     );
                     vendorList.add(vendor);
                 }
@@ -211,7 +213,7 @@ public class VendorManager extends Manager{
                         vendorDoc.getString("socialSecurityNumber"),
                         vendorDoc.getString("cookingLicenseNumber"),
                         vendorDoc.getString("cookingLicenseState"),
-                        vendorDoc.getString("cookingLicenseExpiry")
+                        vendorDoc.getDate("cookingLicenseExpiry")
                 );
                 vendorList.add(vendor);
             }
@@ -247,7 +249,7 @@ public class VendorManager extends Manager{
                         vendorDoc.getString("socialSecurityNumber"),
                         vendorDoc.getString("cookingLicenseNumber"),
                         vendorDoc.getString("cookingLicenseState"),
-                        vendorDoc.getString("cookingLicenseExpiry")
+                        vendorDoc.getDate("cookingLicenseExpiry")
                 );
                 vendorList.add(user);
             }
@@ -282,7 +284,7 @@ public class VendorManager extends Manager{
                             vendorDoc.getString("socialSecurityNumber"),
                             vendorDoc.getString("cookingLicenseNumber"),
                             vendorDoc.getString("cookingLicenseState"),
-                            vendorDoc.getString("cookingLicenseExpiry")
+                            vendorDoc.getDate("cookingLicenseExpiry")
                     );
                     vendorList.add(vendor);
                 }
@@ -297,11 +299,11 @@ public class VendorManager extends Manager{
         try {
             vendorCollection.drop();
             MongoPool.getInstance().createCollection("vendors");
-            collectionInsert("V01", "Vendor 1", "vendor1@gmail.co", "450-567-83421", "Vendor 1 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10-02-2020");
-            collectionInsert("V02", "Vendor 2", "vendor2@gmail.co", "450-567-83422", "Vendor 2 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10-02-2020");
-            collectionInsert("V03", "Vendor 3", "vendor3@gmail.co", "450-567-83423", "Vendor 3 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10-02-2020");
-            collectionInsert("V04", "Vendor 4", "vendor4@gmail.co", "450-567-83424", "Vendor 4 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10-02-2020");
-            collectionInsert("V05", "Vendor 5", "vendor5@gmail.co", "450-567-83425", "Vendor 5 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10-02-2020");
+            collectionInsert("V01", "Vendor 1", "vendor1@gmail.co", "450-567-83421", "Vendor 1 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10/02/2020");
+            collectionInsert("V02", "Vendor 2", "vendor2@gmail.co", "450-567-83422", "Vendor 2 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10/02/2020");
+            collectionInsert("V03", "Vendor 3", "vendor3@gmail.co", "450-567-83423", "Vendor 3 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10/02/2020");
+            collectionInsert("V04", "Vendor 4", "vendor4@gmail.co", "450-567-83424", "Vendor 4 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10/02/2020");
+            collectionInsert("V05", "Vendor 5", "vendor5@gmail.co", "450-567-83425", "Vendor 5 Business", "Asian", "121 Baker Street","London","Greater London","00000","United Kingdom","Pasta, Secret Sauce, Detective fries","Sherlock holmes favorite food are cooked here", "youcan'tguessme","SBCNFIDD","XXX-XXXX-XXXX","CA","10/02/2020");
             return "Successful reset of Vendor Collection Data";
         }
         catch(Exception e){
@@ -311,7 +313,7 @@ public class VendorManager extends Manager{
     }
 
 
-    private void collectionInsert( String vendorId, String fullName, String email, String phoneNumber,String nameOfBusiness,String cuisineId,String addressStreetNumber,String addressCity,String addressState,String addressZip,String addressCountry,String specificFoodExpertiseList,String description,String password,String socialSecurityNumber,String cookingLicenseNumber,String cookingLicenseState,String cookingLicenseExpiry) {
+    private void collectionInsert( String vendorId, String fullName, String email, String phoneNumber,String nameOfBusiness,String cuisineId,String addressStreetNumber,String addressCity,String addressState,String addressZip,String addressCountry,String specificFoodExpertiseList,String description,String password,String socialSecurityNumber,String cookingLicenseNumber,String cookingLicenseState,String cookingLicenseExpiry)throws ParseException {
         Document document = new Document()
                 .append("vendorId", vendorId)
                 .append("fullName", fullName)
@@ -330,7 +332,8 @@ public class VendorManager extends Manager{
                 .append("socialSecurityNumber",socialSecurityNumber)
                 .append("cookingLicenseNumber", cookingLicenseNumber)
                 .append("cookingLicenseState", cookingLicenseState)
-                .append("cookingLicenseExpiry", cookingLicenseExpiry);
+                .append("cookingLicenseExpiry", new SimpleDateFormat("dd/MM/yyyy").parse(cookingLicenseExpiry));
         vendorCollection.insertOne(document);
     }
+
 }
