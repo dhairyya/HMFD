@@ -6,10 +6,8 @@ import edu.cmu.andrew.dhairyya.http.exceptions.HttpBadRequestException;
 import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
 import edu.cmu.andrew.dhairyya.managers.PlatformEarningsManager;
 import edu.cmu.andrew.dhairyya.managers.SubscriptionManager;
-import edu.cmu.andrew.dhairyya.managers.VendorManager;
 import edu.cmu.andrew.dhairyya.models.PlatformEarnings;
 import edu.cmu.andrew.dhairyya.models.Subscriptions;
-import edu.cmu.andrew.dhairyya.models.Vendor;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
 import org.json.JSONObject;
 
@@ -128,6 +126,23 @@ public class SubscriptionHttpInterface extends HttpInterface  {
                 throw new HttpBadRequestException(0, "Problem with getting subscriptions");
         }catch (Exception e){
             throw handleException("GET /subscriptions", e);
+        }
+    }
+
+    @GET
+    @Path("/reset")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse resetSubscriptionsAndPlatformEarning(@Context HttpHeaders headers) {
+        try {
+            AppLogger.info("Got an API call");
+            String message1 = SubscriptionManager.getInstance().resetSubscriptionData();
+            String message2 = PlatformEarningsManager.getInstance().resetPlatformEarning();
+            if (message1 != null && message2 != null)
+                return new AppResponse("Subscription and Platform Earning Reset Successfully");
+            else
+                throw new HttpBadRequestException(0, "Problem with resetting subscription and platform Earning data");
+        } catch (Exception e) {
+            throw handleException("GET /subscriptions/reset", e);
         }
     }
 
