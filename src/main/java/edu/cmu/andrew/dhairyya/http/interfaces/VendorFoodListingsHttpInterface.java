@@ -5,11 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import edu.cmu.andrew.dhairyya.http.exceptions.HttpBadRequestException;
 import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
-import edu.cmu.andrew.dhairyya.http.utils.PATCH;
 import edu.cmu.andrew.dhairyya.managers.VendorFoodListingsManager;
-import edu.cmu.andrew.dhairyya.managers.VendorManager;
 import edu.cmu.andrew.dhairyya.models.FoodListings;
-import edu.cmu.andrew.dhairyya.models.Vendor;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
 import org.json.JSONObject;
 
@@ -88,6 +85,23 @@ public class VendorFoodListingsHttpInterface extends HttpInterface {
                 throw new HttpBadRequestException(0, "Problem with getting food listings by Vendor ID");
         }catch (Exception e){
             throw handleException("GET /FoodItems/{vendorId}", e);
+        }
+    }
+
+    @GET
+    @Path("/reset")
+    @Produces({MediaType.APPLICATION_JSON})
+    public AppResponse resetFoodListingsForVendor(@Context HttpHeaders headers) {
+        try {
+            AppLogger.info("Got an API call");
+            String message = VendorFoodListingsManager.getInstance().resetFoodListings();
+
+            if (message != null)
+                return new AppResponse(message);
+            else
+                throw new HttpBadRequestException(0, "Problem with resetting vendor Food Listings data");
+        } catch (Exception e) {
+            throw handleException("GET /FoodItems/reset", e);
         }
     }
 
