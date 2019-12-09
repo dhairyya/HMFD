@@ -5,9 +5,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import edu.cmu.andrew.dhairyya.http.exceptions.HttpBadRequestException;
 import edu.cmu.andrew.dhairyya.http.responses.AppResponse;
 import edu.cmu.andrew.dhairyya.managers.PlatformEarningsManager;
-import edu.cmu.andrew.dhairyya.managers.VendorManager;
 import edu.cmu.andrew.dhairyya.models.PlatformEarnings;
-import edu.cmu.andrew.dhairyya.models.Vendor;
 import edu.cmu.andrew.dhairyya.utils.AppLogger;
 
 import javax.ws.rs.GET;
