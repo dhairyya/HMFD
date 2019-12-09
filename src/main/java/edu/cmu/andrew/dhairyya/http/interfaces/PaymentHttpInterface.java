@@ -29,7 +29,7 @@ public class PaymentHttpInterface extends HttpInterface  {
         try{
             JSONObject json = new JSONObject(ow.writeValueAsString(request));
 
-            PaymentManagerService.getInstance().makeAPayment(json.getDouble("Amount"));
+            PaymentManagerService.getInstance().makeAPayment(json.getDouble("amount"));
             return new AppResponse("Payment Done Successfully");
 
         }catch (Exception e){
