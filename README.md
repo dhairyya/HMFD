@@ -1,59 +1,21 @@
-# HMFD(Home Made Food Delivery App)
+# Home Made Food Delivery (HMFD)
 
-This is the course project for CMU MSSM course 49787-A (Architecture & Programming Principles). 
+### What is this project?
+When people move away from home to a new city or country, they often miss the taste of home-cooked meals. It can be hard to find healthy, fresh food that feels like it was made in a family kitchen. Most fast food is not very good for you if you eat it every day.
 
-## Final Project Part
+This project is a system that helps solve this problem. It connects people who need healthy, home-cooked meals with people who can cook them. 
 
-Ritu Rao worked on the vendor part<br />
-Dhairyya Agarwal worked on the client part
+### How it works from the ground up
+1. **The Need**: People need to eat healthy food to stay strong and feel good. Home-cooked food is usually better than fast food.
+2. **The Connection**: This app acts like a bridge. On one side, there are "Vendors" (people who cook the food). On the other side, there are "Clients" (people who want to eat the food).
+3. **The Service**: Clients can look for the type of food they like. They can subscribe to get meals delivered regularly. The system handles the details like finding the right cook, managing payments, and keeping track of reviews.
+4. **The Goal**: The goal is to make sure everyone can get a warm, healthy, home-style meal delivered right to their door, no matter where they are.
 
-Link to Google Document: https://docs.google.com/document/d/1SE_ok3kHdn_SIzDqBpPu0kHNZoFv3dRgCDUiqiIs36o/edit?usp=sharing
+### Features
+- **Find Food**: Search for meals that match your taste and community.
+- **Subscriptions**: Set up a plan to get food delivered daily so you don't have to worry about cooking.
+- **Manage Accounts**: Tools for both the people cooking and the people eating to manage their profiles and orders.
+- **Safety and Quality**: Users can leave ratings and reviews to help others find the best food.
 
-Link to Reset Data: https://docs.google.com/spreadsheets/d/1vMhlzkVZ4oCEIBJ-3zxLMxK53TEXnQwdrBLDmDgZ0H0/edit?usp=sharing
-
-Link to API Specification:https://docs.google.com/document/d/1MVIT5LrDoo7mSR3radOD9MrW3M8sQGffxDsCWFrw4Ko/edit?usp=sharing
-## Problem Statement
-
-Away from home, food choices and food options are becoming a growing challenge. What is more critical is finding the right options close to one’s community and geographical choices. In such scenarios people migrating and entering into different regions from foreign places tend to lose on the healthy and home-like food options. Undernourished food over time causes greater losses. HMFD will enable healthy, nutritious and timely food delivery to all it’s subscribers, by monitoring choices and delivering food at the doorstep for subscribers, daily.
-
-## Installation
-
-Use github to clone the project using the following command
-
-```bash
-git clone https://github.com/dhairyya/HMFD <directory_name>
-```
-
-## Release History
-
-* 0.2.1
-    * CHANGE: Update docs (module code remains unchanged)
-* 0.2.0
-    * CHANGE: Remove `setDefaultXYZ()`
-    * ADD: Add `init()`
-* 0.1.1
-    * FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
-* 0.1.0
-    * The first proper release
-    * CHANGE: Rename `foo()` to `bar()`
-* 0.0.1
-    * Work in progress
-    
-## Meta
-
-Team Members (Alphabetical Order)
-
-Ritu Rao
-
-Dhairyya Agarwal
-
-Your Name – [@YourTwitter]([twitter link removed]) – dhairyya@users.noreply.github.com
-
-Distributed under the XYZ license. See ``LICENSE`` for more information.
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+---
+*This project was created as part of a university course on building software systems.*
