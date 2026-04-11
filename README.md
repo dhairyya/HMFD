@@ -47,7 +47,7 @@ Ritu Rao
 
 Dhairyya Agarwal
 
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
+Your Name – [@YourTwitter](https://twitter.com/dbader_org) – dhairyya@users.noreply.github.com
 
 Distributed under the XYZ license. See ``LICENSE`` for more information.
 
